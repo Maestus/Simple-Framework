@@ -1,0 +1,44 @@
+/home/rached/C++/sgf/Graphics/Button.hpp: In constructor ‘Button::Button(sf::Image*, sf::Image*, std::__cxx11::string, sf::Vector2f)’:
+/home/rached/C++/sgf/Graphics/Button.hpp:21:18: error: ‘class sf::Sprite’ has no member named ‘setImage’; did you mean ‘setScale’?
+     this->normal.setImage(*normal);
+                  ^~~~~~~~
+/home/rached/C++/sgf/Graphics/Button.hpp:22:19: error: ‘class sf::Sprite’ has no member named ‘setImage’; did you mean ‘setScale’?
+     this->clicked.setImage(*clicked);
+                   ^~~~~~~~
+/home/rached/C++/sgf/Graphics/Button.hpp:27:25: error: no matching function for call to ‘sf::String::replace(std::__cxx11::string&)’
+     String.replace(words);
+                         ^
+In file included from /usr/include/SFML/System.hpp:42:0,
+                 from /usr/include/SFML/Window.hpp:32,
+                 from /usr/include/SFML/Graphics.hpp:32,
+                 from /home/rached/C++/sgf/Graphics/Button.hpp:1:
+/usr/include/SFML/System/String.hpp:427:10: note: candidate: void sf::String::replace(std::size_t, std::size_t, const sf::String&)
+     void replace(std::size_t position, std::size_t length, const String& replaceWith);
+          ^~~~~~~
+/usr/include/SFML/System/String.hpp:427:10: note:   candidate expects 3 arguments, 1 provided
+/usr/include/SFML/System/String.hpp:439:10: note: candidate: void sf::String::replace(const sf::String&, const sf::String&)
+     void replace(const String& searchFor, const String& replaceWith);
+          ^~~~~~~
+/usr/include/SFML/System/String.hpp:439:10: note:   candidate expects 2 arguments, 1 provided
+/home/rached/C++/sgf/Graphics/Button.hpp:28:12: error: ‘class sf::String’ has no member named ‘setPosition’
+     String.setPosition(location.x+3,location.y+3);
+            ^~~~~~~~~~~
+/home/rached/C++/sgf/Graphics/Button.hpp:29:22: error: no matching function for call to ‘sf::String::replace(int)’
+     String.replace(14);
+                      ^
+In file included from /usr/include/SFML/System.hpp:42:0,
+                 from /usr/include/SFML/Window.hpp:32,
+                 from /usr/include/SFML/Graphics.hpp:32,
+                 from /home/rached/C++/sgf/Graphics/Button.hpp:1:
+/usr/include/SFML/System/String.hpp:427:10: note: candidate: void sf::String::replace(std::size_t, std::size_t, const sf::String&)
+     void replace(std::size_t position, std::size_t length, const String& replaceWith);
+          ^~~~~~~
+/usr/include/SFML/System/String.hpp:427:10: note:   candidate expects 3 arguments, 1 provided
+/usr/include/SFML/System/String.hpp:439:10: note: candidate: void sf::String::replace(const sf::String&, const sf::String&)
+     void replace(const String& searchFor, const String& replaceWith);
+          ^~~~~~~
+/usr/include/SFML/System/String.hpp:439:10: note:   candidate expects 2 arguments, 1 provided
+/home/rached/C++/sgf/Graphics/Button.hpp: In member function ‘void Button::setText(std::__cxx11::string)’:
+/home/rached/C++/sgf/Graphics/Button.hpp:47:12: error: ‘class sf::String’ has no member named ‘setText’
+     String.setText(words);
+            ^~~~~~~

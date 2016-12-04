@@ -1,0 +1,20 @@
+Building from scratch a new framework written in C++
+for simple boxes games.
+
+Exemple of implementable games :
+
+    -2048
+    -Taquin
+    -Sokoban
+
+First step :
+
+    -Working on UML representation of the Framework. (Done)
+
+Second step :
+
+    -Implement it in source code. (Work in progress)
+
+Final step :
+
+    -Implement 2048 and Taquin game with this framework.
