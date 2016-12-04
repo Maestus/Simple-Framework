@@ -1,16 +1,11 @@
-#include <iostream>
-#include <stdlib.h>     /* srand, rand */
-#include <time.h>       /* time */
-#include <random>
-using namespace std;
 #include "Module_2048.hpp"
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+using namespace std;
 
 Module_2048::Module_2048(int x_length, int y_length): grid(Board<int>(x_length,y_length)){}
 
-
-/*bool Game::oneMove(int a){
-  return true;
-}*/
 
 int random_integer(int n){
     srand (time(NULL));
@@ -29,9 +24,8 @@ void Module_2048::init(int count){
     }
 }
 
-
+//Return True if there is an empty Box
 bool Module_2048::has_empty(){
-
     for(int x = 0; x < grid.get_matrix_length_x(); ++x){
       for(int y = 0; y < grid.get_matrix_length_y(); ++y){
         if(grid.get_plateau()[y][x] == 0){
@@ -42,7 +36,7 @@ bool Module_2048::has_empty(){
     return false;
 }
 
-
+// Gives the size of the Grid
 int Module_2048::getGridSize() {
   return grid.get_matrix_length_x()*grid.get_matrix_length_y();
 }
@@ -61,20 +55,31 @@ void Module_2048::random_empty_pos(int& x, int& y){
     do{
         x = rand_pos();
         y = rand_pos();
-        cout << x << " " << y << endl;
+        cout << "x = " << x << " y = " << y << endl;
     }
     while(!(grid.get_plateau()[y][x] == 0));
 }
 
 
 int main(int argc, char const *argv[]) {
-  int size;
-  cout << "Entrer la taille de la grille que vous souhaitez avoir : ";
-  cin >> size;
-  Module_2048 m(size,size);
+  int x = 0;
+  int y = 0;
+  cout << "-----------------------------------------------------------" << endl;
+  cout << "---------------WELCOME TRY MY FUCKING GAME-----------------" << endl;
+  cout << "-----------------------------------------------------------" << endl;
+  while(x < 2){
+    cout << "Entrer le nombre de ligne du plateau : ";
+    cin >> x;
+  }
+  while(y < 2){
+    cout << "Entrer le nombre de colonne du plateau : ";
+    cin >> y;
+  }
+  Module_2048 m(x,y);
 	m.grid.print();
   m.init(5);
   m.grid.get_plateau()[0][0] = 2;
   m.grid.print();
   return 0;
+
 }
