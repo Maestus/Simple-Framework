@@ -7,19 +7,16 @@ public:
   Box(T a):box(a){}
 
   bool operator==(int b){
-    std::cout << "----"<<b<<"----"<< std::endl;
     return b == box;
-    std::cout << "--PASS--" << std::endl;
   }
 
   operator T() { return box; }
 
-  void operator=(int b){
-    if (this->box != &b) {
-          delete box; // free resource;
-          box = 0;
-          box = b;
+  Box<T>& operator=(const Box<T>& b){
+    if (this->box != b.box) {
+          this->box = b.box;
       }
+      std::cout << "-****"<<*this<<"****-"<< std::endl;
       return *this;
   }
 
