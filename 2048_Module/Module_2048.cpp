@@ -1,15 +1,19 @@
 #include "Module_2048.hpp"
 #include <iostream>
-#include <stdlib.h>
-#include <time.h>
+#include <random>
 using namespace std;
 
 Module_2048::Module_2048(int x_length, int y_length): grid(Board<int>(x_length,y_length)){}
 
 
 int random_integer(int n){
-    srand (time(NULL));
-    return rand() % n + 1;
+  // Seed with a real random value, if available
+  random_device r;
+
+  // Choose a random mean between 1 and 6
+  default_random_engine e1(r());
+  uniform_int_distribution<int> uniform_dist(1, n);
+  return uniform_dist(e1);
 }
 
 void Module_2048::init(int count){
@@ -41,7 +45,7 @@ int Module_2048::getGridSize() {
   return grid.get_matrix_length_x()*grid.get_matrix_length_y();
 }
 
-// Gives a random position from [0, grid_size)
+// Gives a random position from [0, grid_size]
 int Module_2048::rand_pos(){
   return random_integer(grid.get_matrix_length_x() - 1);
 }
@@ -55,7 +59,7 @@ void Module_2048::random_empty_pos(int& x, int& y){
     do{
         x = rand_pos();
         y = rand_pos();
-        cout << "x = " << x << " y = " << y << endl;
+        //cout << "x = " << x << " y = " << y << endl;
     }
     while(!(grid.get_plateau()[y][x] == 0));
 }
@@ -77,8 +81,7 @@ int main(int argc, char const *argv[]) {
   }
   Module_2048 m(x,y);
 	m.grid.print();
-  m.init(5);
-  m.grid.get_plateau()[0][0] = 2;
+  m.init(m.grid.get_matrix_length_x());
   m.grid.print();
   return 0;
 
