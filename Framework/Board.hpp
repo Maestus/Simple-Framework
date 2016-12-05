@@ -10,7 +10,7 @@ public:
   Board(int,int);
   int get_matrix_length_x();
   int get_matrix_length_y();
-  std::vector <std::vector<Box<T>>> get_plateau();
+  std::vector <std::vector<Box<T>>>& get_plateau();
   void print();
   operator std::vector <std::vector<Box<T>>>() const { return plateau; }
 private:
@@ -48,6 +48,6 @@ void Board<T>::print(){
 }
 
 template <typename T>
-std::vector <std::vector<Box<T>>> Board<T>::get_plateau(){
+std::vector <std::vector<Box<T>>>& Board<T>::get_plateau(){
   return this->plateau;
 }

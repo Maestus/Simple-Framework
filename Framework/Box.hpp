@@ -3,26 +3,24 @@
 template <class T>
 class Box{
 public:
-  Box():box(T()){}
-  Box(T a):box(a){}
+  Box():content(T()){}
+  Box(T a):content(a){}
 
   bool operator==(int b){
-    return b == box;
+    return b == content;
   }
 
-  operator T() { return box; }
+  operator T() { return content; }
 
   Box<T>& operator=(const Box<T>& b){
-    if (this->box != b.box) {
-          this->box = b.box;
+    if (this->content != b.content) {
+      this->content = b.content;
       }
-      std::cout << "-****"<<*this<<"****-"<< std::endl;
       return *this;
   }
-
 private:
-  T box;
+  T content;
 friend std::ostream& operator<<(std::ostream& out,const Box<T> &b){
-  return (out<<b.box);
+  return (out<<b.content);
 }
 };
