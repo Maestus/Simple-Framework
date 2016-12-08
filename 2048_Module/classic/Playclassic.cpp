@@ -13,36 +13,29 @@ void Playclassic::init(int count){
 }
 
 int main(int argc, char const *argv[]) {
-  int x = 0;
-  int y = 0;
+  int x;
+  int y;
+  if(argc == 3){
+    const string & _x = argv[1];
+    const string & _y = argv[2];
+    try{
+      x = stoi(_x);
+      y = stoi(_y);
+    }catch(exception &e){
+      cout << "Donner des entiers en entrée" << endl;
+      exit(1);
+    }
+  }
   cout << "-----------------------------------------------------------" << endl;
-  cout << "---------------WELCOME TRY MY FUCKING GAME-----------------" << endl;
+  cout << "-------------------WELCOME TRY MY GAME---------------------" << endl;
   cout << "-----------------------------------------------------------" << endl;
 
-  initialization :
-    init_x :
-      cout << "Entrer le nombre de ligne du plateau : ";
-      cin >> x;
-      if(cin.fail()){
-        cerr << "Entrer un entier !!" << endl;
-        cin.clear();
-        goto init_x;
-      }
-    cout << "Entrer le nombre de colonne du plateau : ";
-    init_y :
-        cin >> y;
-        if(cin.fail()){
-          cerr << "Entrer un entier !!" << endl;
-          cin.clear();
-          goto init_y;
-        }
   try{
     Playclassic a(x,y);
     a.init(a.grid.get_matrix_length_x());
     a.grid.print();
   }catch(NotwellformedBoard &exception){
     cerr << exception.what() << exception.how() << endl;
-    goto initialization;
   }
   return 0;
 }
