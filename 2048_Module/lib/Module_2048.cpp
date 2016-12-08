@@ -1,19 +1,13 @@
-#include <iostream>
-#include <random>
-using namespace std;
-
 Module_2048::Module_2048(int x_length, int y_length): grid(Board<int>(x_length,y_length)){}
 
 int Module_2048::random_integer(int n){
   // Seed with a real random value, if available
   random_device r;
-
   // Choose a random mean between 1 and 6
   default_random_engine e1(r());
-  uniform_int_distribution<int> uniform_dist(1, n);
+  uniform_int_distribution<int> uniform_dist(0, n);
   return uniform_dist(e1);
 }
-
 
 //Return True if there is an empty Box
 bool Module_2048::has_empty(){
@@ -34,7 +28,7 @@ int Module_2048::getGridSize() {
 
 // Gives a random position from [0, grid_size]
 int Module_2048::rand_pos(){
-  return random_integer(grid.get_matrix_length_x() - 1);
+  return (grid.get_matrix_length_x() < grid.get_matrix_length_y()) ? random_integer(grid.get_matrix_length_x() - 1) : random_integer(grid.get_matrix_length_y() - 1);
 }
 
 // Sets the x and y with a random empty position
