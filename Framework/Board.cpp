@@ -1,11 +1,12 @@
-using namespace std;
-
-
 template <class T>
 Board<T>::Board():matrix_length_x(), matrix_length_y(), plateau(){};
 
 template <class T>
-Board<T>::Board(int a, int b): matrix_length_x(a), matrix_length_y(b), plateau(matrix_length_x,vector<Box<T>>(matrix_length_y) ){}
+Board<T>::Board(int a, int b): matrix_length_x(a), matrix_length_y(b), plateau(matrix_length_x,vector<Box<T>>(matrix_length_y)){
+  if(a <= 1 || b <= 1){
+    throw NotwellformedBoard(matrix_length_x,matrix_length_y);
+  }
+}
 
 template <typename T>
 int Board<T>::get_matrix_length_x(){

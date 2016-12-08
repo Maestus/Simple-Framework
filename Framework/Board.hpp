@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "Box.hpp"
+#include "../Exceptions/NotwellformedBoard.hpp"
 
 template <typename T>
 class Board : public Box<T>{
@@ -21,6 +22,7 @@ private:
   std::vector <std::vector<Box<T>>> plateau;
 };
 
+using namespace std;
 #include "Board.cpp"
 
 #endif
