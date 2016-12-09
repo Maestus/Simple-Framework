@@ -12,6 +12,8 @@ public:
   int rand_pos();
   void random_empty_pos(int&, int&);
   virtual void init(int) = 0;
+  virtual void add_value() = 0;
+  virtual void apply_move(Direction) = 0;
   int random_integer(int);
   Board<int> grid;
 };
