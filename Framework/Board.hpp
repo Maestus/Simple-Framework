@@ -5,6 +5,13 @@
 #include <vector>
 #include "Box.hpp"
 #include "../Exceptions/NotwellformedBoard.hpp"
+#include "Enum_Direction/Direction.hpp"
+
+
+#define KEYHAUT "z"
+#define KEYBAS "s"
+#define KEYGAUCHE "q"
+#define KEYDROITE "d"
 
 template <typename T>
 class Board : public Box<T>{
@@ -15,6 +22,7 @@ public:
   int get_matrix_length_y();
   std::vector <std::vector<Box<T>>>& get_plateau();
   void print();
+  Direction do_one_move();
   operator std::vector <std::vector<Box<T>>>() const { return plateau; }
 private:
   const int matrix_length_x;

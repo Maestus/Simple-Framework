@@ -18,6 +18,21 @@ int Board<T>::get_matrix_length_y(){
   return matrix_length_y;
 }
 
+template <typename T>
+Direction Board<T>::do_one_move(){
+  string choice;
+  cin >> choice;
+  if(choice == KEYDROITE){
+    return Direction::DROITE;
+  }if(choice == KEYGAUCHE){
+    return Direction::GAUCHE;
+  }if(choice == KEYHAUT){
+    return Direction::HAUT;
+  }if(choice == KEYBAS){
+    return Direction::BAS;
+  }
+  return Direction::NOTKNOWN;
+}
 
 template <typename T>
 void Board<T>::print(){
@@ -26,9 +41,9 @@ void Board<T>::print(){
       cout << endl;
     for(int j = 0; j < matrix_length_y; j++)
       if(plateau[i][j] == 0)
-        cout << ".";
+        cout << "  .  ";
       else
-        cout << plateau[i][j];
+        cout << "  " << plateau[i][j] << "  ";
   }
   cout << endl;
 }
