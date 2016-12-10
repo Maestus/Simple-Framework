@@ -10,8 +10,6 @@ void Playclassic::init(int count){
   }
 }
 
-//int get_multiple(int) Abstraite le type de case (commence à 2 ou à 3) renvoi le PPCM
-
 void Playclassic::add_value(){
   int x;
   int y;
