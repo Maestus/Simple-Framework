@@ -5,13 +5,38 @@
 
 #define BORDURE "##############################################################"
 
+Module_2048* launch_2048_module(int& x, int& y){
+  cout << "-----------------------------------------------------------" << endl;
+  cout << "-                       Launching                         -" << endl;
+  cout << "-                      2048-Module                        -" << endl;
+  cout << "-----------------------------------------------------------" << endl;
+  cout << "#  1 - Classic mode                                       #" << endl;
+  cout << "-----------------------------------------------------------" << endl;
+  cout << "-----------------------------------------------------------" << endl;
+  cout << "#  2 - TwoThreeFiveTiles mode                             #" << endl;
+  cout << "-----------------------------------------------------------" << endl;
+  int choix;
+  cout << "Faite votre choix : ";
+  try{
+    cin >> choix;
+  }catch(exception const& e){
+    cout << e.what() << endl;
+  }
+  if(choix == 1)
+    return new Playclassic(x,y);
+  return new TwoThreeFiveTiles(x,y);
+}
+
+
 int main(int argc, char const *argv[]) {
   int x = 0;
   int y = 0;
+  string game_name;
   bool instantiation = false;
-  if(argc == 3){
-    const string & _x = argv[1];
-    const string & _y = argv[2];
+  if(argc == 4){
+    game_name = argv[1];
+    const string & _x = argv[2];
+    const string & _y = argv[3];
     try{
       x = stoi(_x);
       y = stoi(_y);
@@ -22,26 +47,25 @@ int main(int argc, char const *argv[]) {
     }
   }
   try{
-    TwoThreeFiveTiles a(x,y);
-    a.init(a.grid.get_matrix_length_x()/2);
-
-    cout << "-----------------------------------------------------------" << endl;
-    cout << "-                   2048-Classic                          -" << endl;
-    cout << "-----------------------------------------------------------" << endl;
-
-    a.grid.print();
-    while(1){
-      Direction choice = Direction::NOTKNOWN;
-      choice = a.do_one_move();
-      if(!(choice == Direction::NOTKNOWN)){
-        cout << BORDURE << endl;
-        a.merge_tiles(choice);
-        a.grid.print();
+    if(game_name == "2048"){
+      Module_2048 *a = launch_2048_module(x,y);
+      a->init(a->grid.get_matrix_length_x()/2);
+      a->grid.print();
+      while(1){
+        Direction choice = Direction::NOTKNOWN;
+        choice = a->do_one_move();
+        if(!(choice == Direction::NOTKNOWN)){
+          a->merge_tiles(choice);
+          cout << BORDURE << endl;
+          cout << "score : " << a->grid.get_score() << endl;
+          cout << BORDURE << endl;
+          a->grid.print();
+        }
       }
     }
   }catch(NotwellformedBoard &exception){
     if(!instantiation){
-      cout << "Executer le programme comme suit : ./Playclassic x_value y_value" << endl;
+      cout << "Executer le programme comme suit : ./game x_value y_value" << endl;
     }else
       cerr << exception.what() << exception.how() << endl;
   }
