@@ -14,6 +14,11 @@ void Board<T>::add_to_score(int points){
 }
 
 template <typename T>
+int Board<T>::get_score(){
+  return score;
+}
+
+template <typename T>
 void Board<T>::reset_access(){
   for(int i = 0; i < matrix_length_x; i++){
     for(int j = 0; j < matrix_length_y; j++)
