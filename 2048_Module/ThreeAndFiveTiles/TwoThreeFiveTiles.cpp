@@ -33,6 +33,7 @@ void TwoThreeFiveTiles::merge_tiles(Direction d){
             && !grid.get_plateau()[nextx][y].is_access() && !grid.get_plateau()[x][y].is_access()){
             grid.get_plateau()[x][y].set_content(grid.get_plateau()[nextx][y].get_content()
               *(((grid.get_plateau()[nextx][y].get_content() % 3 == 0) ? valeur_initiale[1] : ((grid.get_plateau()[nextx][y].get_content() % 5 == 0) ? valeur_initiale[2] : valeur_initiale[0]))));
+            grid.add_to_score(grid.get_plateau()[nextx][y].get_content());
             grid.get_plateau()[x][y].set_access(true);
             grid.get_plateau()[nextx][y].set_content(0);
             has_merged = true;
@@ -54,6 +55,7 @@ void TwoThreeFiveTiles::merge_tiles(Direction d){
             && !grid.get_plateau()[nextx][y].is_access() && !grid.get_plateau()[x][y].is_access()){
             grid.get_plateau()[nextx][y] = grid.get_plateau()[x][y]
               *((grid.get_plateau()[nextx][y].get_content() % 3 == 0) ? valeur_initiale[1] : ((grid.get_plateau()[nextx][y].get_content() % 5 == 0) ? valeur_initiale[2] : valeur_initiale[0]));
+            grid.add_to_score(grid.get_plateau()[nextx][y].get_content());
             grid.get_plateau()[nextx][y].set_access(true);
             grid.get_plateau()[x][y] = 0;
             has_merged = true;
@@ -75,6 +77,7 @@ void TwoThreeFiveTiles::merge_tiles(Direction d){
             && !grid.get_plateau()[x][nexty].is_access() && !grid.get_plateau()[x][y].is_access()){
             grid.get_plateau()[x][nexty] = grid.get_plateau()[x][y]
               *((grid.get_plateau()[x][y].get_content() % 3 == 0) ? valeur_initiale[1] : ((grid.get_plateau()[x][y].get_content() % 5 == 0) ? valeur_initiale[2] : valeur_initiale[0]));
+            grid.add_to_score(grid.get_plateau()[x][nexty].get_content());
             grid.get_plateau()[x][nexty].set_access(true);
             grid.get_plateau()[x][y] = 0;
             has_merged = true;
@@ -96,6 +99,7 @@ void TwoThreeFiveTiles::merge_tiles(Direction d){
             && !grid.get_plateau()[x][nexty].is_access() && !grid.get_plateau()[x][y].is_access()){
             grid.get_plateau()[x][nexty] = grid.get_plateau()[x][y]
               *((grid.get_plateau()[x][y].get_content() % 3 == 0) ? valeur_initiale[1] : ((grid.get_plateau()[x][y].get_content() % 5 == 0) ? valeur_initiale[2] : valeur_initiale[0]));
+            grid.add_to_score(grid.get_plateau()[x][nexty].get_content());
             grid.get_plateau()[x][nexty].set_access(true);
             grid.get_plateau()[x][y] = 0;
             has_merged = true;
