@@ -21,6 +21,81 @@ bool Module_2048::has_empty(){
     return false;
 }
 
+bool Module_2048::apply_move(Direction d){
+  bool has_moved = false;
+  if(d == Direction::BAS){
+    for(int x = grid.get_matrix_length_x() - 1; x >= 0; --x){
+      for(int y = 0; y < grid.get_matrix_length_y(); ++y){
+        if(!(grid.get_plateau()[x][y].get_content() == 0)){
+          int lastx = x;
+          int nextx = x + 1;
+          while(nextx < grid.get_matrix_length_x() && grid.get_plateau()[nextx][y].get_content() == 0){
+            lastx = nextx;
+            ++nextx;
+          }
+          if(lastx != x){
+            grid.get_plateau()[lastx][y].set_content(grid.get_plateau()[x][y].get_content());
+            grid.get_plateau()[x][y].set_content(0);
+            has_moved = true;
+          }
+        }
+      }
+    }
+  }else if(d == Direction::HAUT){
+    for(int x = 0; x < grid.get_matrix_length_x(); ++x){
+      for(int y = 0; y < grid.get_matrix_length_y(); ++y){
+        if(!(grid.get_plateau()[x][y].get_content() == 0)){
+          int lastx = x;
+          int nextx = x - 1;
+          while(nextx >= 0 && grid.get_plateau()[nextx][y].get_content() == 0){
+            lastx = nextx;
+            --nextx;
+          }
+          if(lastx != x){
+            grid.get_plateau()[lastx][y].set_content(grid.get_plateau()[x][y].get_content());
+            grid.get_plateau()[x][y].set_content(0);
+            has_moved = true;
+          }
+        }
+      }
+    }
+  }else if(d == Direction::DROITE){
+    for(int x = 0; x < grid.get_matrix_length_x(); ++x){
+      for(int y = grid.get_matrix_length_y() - 1; y >= 0; --y){
+        if(!(grid.get_plateau()[x][y] == 0)){
+          int lasty = y;
+          int nexty = y + 1;
+          while(nexty < grid.get_matrix_length_y() && grid.get_plateau()[x][nexty] == 0){
+            lasty = nexty;
+            ++nexty;
+          }
+          if(lasty != y){
+            grid.get_plateau()[x][lasty] = grid.get_plateau()[x][y];
+            grid.get_plateau()[x][y] = 0;
+          }
+        }
+      }
+    }
+  }else if(d == Direction::GAUCHE){
+    for(int x = 0; x < grid.get_matrix_length_x(); ++x){
+      for(int y = 0; y < grid.get_matrix_length_y(); ++y){
+        if(!(grid.get_plateau()[x][y] == 0)){
+          int lasty = y;
+          int nexty = y - 1;
+          while(nexty >= 0 && grid.get_plateau()[x][nexty] == 0){
+            lasty = nexty;
+            --nexty;
+          }
+          if(lasty != y){
+            grid.get_plateau()[x][lasty] = grid.get_plateau()[x][y];
+            grid.get_plateau()[x][y] = 0;
+          }
+        }
+      }
+    }
+  }return has_moved;
+}
+
 // Gives the size of the Grid
 int Module_2048::getGridSize() {
   return grid.get_matrix_length_x()*grid.get_matrix_length_y();
