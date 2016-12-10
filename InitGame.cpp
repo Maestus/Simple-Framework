@@ -1,6 +1,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
-#include "2048_Module/classic/Playclassic.hpp"
+#include "2048_Module/Classic/Playclassic.hpp"
+#include "2048_Module/ThreeAndFiveTiles/TwoThreeFiveTiles.hpp"
 
 #define BORDURE "##############################################################"
 
@@ -21,7 +22,7 @@ int main(int argc, char const *argv[]) {
     }
   }
   try{
-    Playclassic a(x,y);
+    TwoThreeFiveTiles a(x,y);
     a.init(a.grid.get_matrix_length_x()/2);
 
     cout << "-----------------------------------------------------------" << endl;
