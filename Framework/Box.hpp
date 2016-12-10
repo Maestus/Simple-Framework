@@ -23,6 +23,10 @@ public:
 
   void set_access(bool b){access = b;}
 
+  void set_content(T c){ content = c;}
+
+  T get_content(){return content;}
+
 private:
   T content;
   bool access = false;
