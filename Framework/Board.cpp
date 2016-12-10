@@ -1,10 +1,23 @@
 template <class T>
-Board<T>::Board():matrix_length_x(), matrix_length_y(), plateau(){};
+Board<T>::Board(): score(), matrix_length_x(), matrix_length_y(), plateau(){};
 
 template <class T>
-Board<T>::Board(int a, int b): matrix_length_x(a), matrix_length_y(b), plateau(matrix_length_x,vector<Box<T>>(matrix_length_y)){
+Board<T>::Board(int a, int b): score(), matrix_length_x(a), matrix_length_y(b), plateau(matrix_length_x,vector<Box<T>>(matrix_length_y)){
   if(a <= 1 || b <= 1){
     throw NotwellformedBoard(matrix_length_x,matrix_length_y);
+  }
+}
+
+template <typename T>
+void Board<T>::add_to_score(int points){
+  score += points;
+}
+
+template <typename T>
+void Board<T>::reset_access(){
+  for(int i = 0; i < matrix_length_x; i++){
+    for(int j = 0; j < matrix_length_y; j++)
+      plateau[i][j].set_access(false);
   }
 }
 

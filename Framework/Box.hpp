@@ -18,8 +18,14 @@ public:
       }
       return *this;
   }
+
+  bool is_access(){return access;}
+
+  void set_access(bool b){access = b;}
+
 private:
   T content;
+  bool access = false;
 friend std::ostream& operator<<(std::ostream& out,const Box<T> &b){
   return (out<<b.content);
 }

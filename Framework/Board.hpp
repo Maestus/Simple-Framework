@@ -24,7 +24,10 @@ public:
   void print();
   Direction do_one_move();
   operator std::vector <std::vector<Box<T>>>() const { return plateau; }
+  void add_to_score(int);
+  void reset_access();
 private:
+  int score;
   const int matrix_length_x;
   const int matrix_length_y;
   std::vector <std::vector<Box<T>>> plateau;
