@@ -53,17 +53,17 @@ int main(int argc, char const *argv[]) {
   try{
     if(game_name == "2048"){
       Module_2048 *a = launch_2048_module(x,y);
-      a->init(a->grid.get_matrix_length_x()/2);
-      a->grid.print();
+      a->init();
+      a->print();
       while(1){
         Direction choice = Direction::NOTKNOWN;
         choice = a->do_one_move();
         if(!(choice == Direction::NOTKNOWN)){
           a->merge_tiles(choice);
           cout << BORDURE << endl;
-          cout << "score : " << a->grid.get_score() << endl;
+          cout << "score : " << a->get_score() << endl;
           cout << BORDURE << endl;
-          a->grid.print();
+          a->print();
         }
       }
     }
