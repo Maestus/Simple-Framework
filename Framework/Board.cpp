@@ -19,6 +19,19 @@ int Board<T>::get_score(){
 }
 
 template <typename T>
+int Board<T>::getGridSize() {
+  return matrix_length_x*matrix_length_y;
+}
+
+template <typename T>
+void Board<T>::init(){
+  for(int i = 0; i < matrix_length_x; i++){
+    for(int j = 0; j < matrix_length_y; j++)
+      plateau[i][j] = T();
+  }
+}
+
+template <typename T>
 void Board<T>::reset_access(){
   for(int i = 0; i < matrix_length_x; i++){
     for(int j = 0; j < matrix_length_y; j++)
