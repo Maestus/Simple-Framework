@@ -8,7 +8,7 @@ private:
   const int valeur_initiale[3] = {2,3,5};
 public:
   TwoThreeFiveTiles(int a, int b) : Module_2048(a,b){}
-  virtual void init(int count);
+  virtual void init();
   virtual void add_value();
   virtual void merge_tiles(Direction);
 };

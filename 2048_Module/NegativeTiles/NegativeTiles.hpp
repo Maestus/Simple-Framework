@@ -9,7 +9,7 @@ private:
   int negativetile;
 public:
   NegativeTiles(int a, int b) : Module_2048(a,b), negativetile(-2){}
-  virtual void init(int count);
+  virtual void init();
   virtual void add_value();
   virtual void merge_tiles(Direction);
   void set_negativeTile(int);

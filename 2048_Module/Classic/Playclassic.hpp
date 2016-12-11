@@ -8,7 +8,7 @@ private:
   const int valeur_initiale = 2;
 public:
   Playclassic(int a, int b) : Module_2048(a,b){}
-  virtual void init(int count);
+  virtual void init();
   virtual void add_value();
   virtual void merge_tiles(Direction);
 };
