@@ -76,6 +76,19 @@ int main(int argc, char const *argv[]) {
       Taquin *a = new Taquin(x,y);
       a->init();
       a->print();
+      while(1){
+        Direction choice = Direction::NOTKNOWN;
+        choice = a->do_one_move();
+        if(!(choice == Direction::NOTKNOWN)){
+          a->apply_move(choice);
+          cout << BORDURE << endl;
+          a->print();
+          if(a->has_win()){
+            cout << "~~~~~~~~~~~~~~~~ You Win ! ~~~~~~~~~~~~~~~~~~~" << endl;
+            exit(0); // Need to give the choice to the player to replay
+          }
+        }
+      }
     }
   }catch(NotwellformedBoard &exception){
     if(!instantiation){
