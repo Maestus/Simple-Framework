@@ -13,8 +13,12 @@ First step :
 
 Second step :
 
-    -Implement it in source code. (Work in progress)
+    -Implement it in source code. (Done)
 
 Final step :
 
-    -Implement 2048 and Taquin game with this framework.
+    -Implement 2048 and Taquin game with this framework. (In progress)
+        -2048 Classic Mode (Done)
+        -2048 NegativeTiles Mode (Done)
+        -2048 TwoThreeFiveTiles Mode (Done)
+        -Taquin (In progress)
