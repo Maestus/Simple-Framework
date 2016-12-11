@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "2048_Module/Classic/Playclassic.hpp"
 #include "2048_Module/ThreeAndFiveTiles/TwoThreeFiveTiles.hpp"
-
+#include "2048_Module/NegativeTiles/NegativeTiles.hpp"
 #define BORDURE "##############################################################"
 
 Module_2048* launch_2048_module(int& x, int& y){
@@ -15,6 +15,9 @@ Module_2048* launch_2048_module(int& x, int& y){
   cout << "-----------------------------------------------------------" << endl;
   cout << "#  2 - TwoThreeFiveTiles mode                             #" << endl;
   cout << "-----------------------------------------------------------" << endl;
+  cout << "-----------------------------------------------------------" << endl;
+  cout << "#  3 - NegativeTiles mode                                 #" << endl;
+  cout << "-----------------------------------------------------------" << endl;
   int choix;
   cout << "Faite votre choix : ";
   try{
@@ -24,9 +27,10 @@ Module_2048* launch_2048_module(int& x, int& y){
   }
   if(choix == 1)
     return new Playclassic(x,y);
-  return new TwoThreeFiveTiles(x,y);
+  else if(choix == 2)
+    return new TwoThreeFiveTiles(x,y);
+  return new NegativeTiles(x,y);
 }
-
 
 int main(int argc, char const *argv[]) {
   int x = 0;
