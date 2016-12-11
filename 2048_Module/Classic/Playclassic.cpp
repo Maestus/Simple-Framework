@@ -105,6 +105,6 @@ void Playclassic::merge_tiles(Direction d){
     }
   }
   if(has_merged | apply_move(d))
-    add_value();
+      add_value();
   reset_access();
 }

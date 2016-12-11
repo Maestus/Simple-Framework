@@ -1,14 +1,5 @@
 Module_2048::Module_2048(int x_length, int y_length): Board(x_length, y_length){}
 
-int Module_2048::random_integer(int n){
-  // Seed with a real random value, if available
-  random_device r;
-  // Choose a random mean between 1 and 6
-  default_random_engine e1(r());
-  uniform_int_distribution<int> uniform_dist(0, n);
-  return uniform_dist(e1);
-}
-
 //Return True if there is an empty Box
 bool Module_2048::has_empty(){
     for(int x = 0; x < get_matrix_length_x(); ++x){
@@ -111,4 +102,15 @@ void Module_2048::random_empty_pos(int& x, int& y){
         y = rand_pos();
     }
     while(!(get_plateau()[y][x] == 0));
+}
+
+//Test of there is a tile with the value is 2048
+bool Module_2048::has_win(){
+  for(int i = 0; i < get_matrix_length_x(); ++i){
+    for(int j = 0; j < get_matrix_length_y(); ++j){
+      if(get_plateau()[i][j].get_content() == 2048)
+        return true;
+    }
+  }
+  return false;
 }
