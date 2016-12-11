@@ -3,6 +3,8 @@
 #include "2048_Module/Classic/Playclassic.hpp"
 #include "2048_Module/ThreeAndFiveTiles/TwoThreeFiveTiles.hpp"
 #include "2048_Module/NegativeTiles/NegativeTiles.hpp"
+#include "Taquin/Taquin.hpp"
+
 #define BORDURE "##############################################################"
 
 Module_2048* launch_2048_module(int& x, int& y){
@@ -64,8 +66,16 @@ int main(int argc, char const *argv[]) {
           cout << "score : " << a->get_score() << endl;
           cout << BORDURE << endl;
           a->print();
+          if(a->has_win()){
+            cout << "~~~~~~~~~~~~~~~~ You Win ! ~~~~~~~~~~~~~~~~~~~" << endl;
+            exit(0); // Need to give the choice to the player to replay
+          }
         }
       }
+    }else if(game_name == "Taquin"){
+      Taquin *a = new Taquin(x,y);
+      a->init();
+      a->print();
     }
   }catch(NotwellformedBoard &exception){
     if(!instantiation){
