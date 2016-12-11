@@ -22,8 +22,10 @@ public:
   int get_matrix_length_y();
   std::vector <std::vector<Box<T>>>& get_plateau();
   void print();
+  int random_integer(int);
   virtual void init() = 0;
   Direction do_one_move();
+  virtual bool has_win() = 0;
   virtual bool apply_move(Direction) = 0;
   operator std::vector <std::vector<Box<T>>>() const { return plateau; }
   void add_to_score(int);

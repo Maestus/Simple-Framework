@@ -9,6 +9,16 @@ Board<T>::Board(int a, int b): score(), matrix_length_x(a), matrix_length_y(b), 
 }
 
 template <typename T>
+int Board<T>::random_integer(int n){
+  // Seed with a real random value, if available
+  random_device r;
+  // Choose a random mean between 1 and 6
+  default_random_engine e1(r());
+  uniform_int_distribution<int> uniform_dist(0, n);
+  return uniform_dist(e1);
+}
+
+template <typename T>
 void Board<T>::add_to_score(int points){
   score += points;
 }
@@ -21,14 +31,6 @@ int Board<T>::get_score(){
 template <typename T>
 int Board<T>::getGridSize() {
   return matrix_length_x*matrix_length_y;
-}
-
-template <typename T>
-void Board<T>::init(){
-  for(int i = 0; i < matrix_length_x; i++){
-    for(int j = 0; j < matrix_length_y; j++)
-      plateau[i][j] = T();
-  }
 }
 
 template <typename T>
