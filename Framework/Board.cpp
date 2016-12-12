@@ -1,11 +1,18 @@
 template <class T>
-Board<T>::Board(): score(), matrix_length_x(), matrix_length_y(), plateau(){};
+Board<T>::Board(): score(), matrix_length_x(), matrix_length_y(), plateau(), enable_computer_play(){};
 
 template <class T>
-Board<T>::Board(int a, int b): score(), matrix_length_x(a), matrix_length_y(b), plateau(matrix_length_x,vector<Box<T>>(matrix_length_y)){
+Board<T>::Board(int a, int b): score(), matrix_length_x(a), matrix_length_y(b), plateau(matrix_length_x,vector<Box<T>>(matrix_length_y)), enable_computer_play(){
   if(a <= 1 || b <= 1){
     throw NotwellformedBoard(matrix_length_x,matrix_length_y);
   }
+}
+
+
+template <typename T>
+void Board<T>::set_enable_computer_play(){
+  enable_computer_play = true;
+  computer_play();
 }
 
 template <typename T>
@@ -49,6 +56,31 @@ int Board<T>::get_matrix_length_x(){
 template <typename T>
 int Board<T>::get_matrix_length_y(){
   return matrix_length_y;
+}
+
+template <typename T>
+void Board<T>::computer_play(){
+  Direction d;
+  while (!has_win()) {
+    do{
+      d = get_random_direction();
+    }while(!apply_move(d));
+    print();
+    cout << "####################################" << endl;
+  }
+}
+
+template <typename T>
+Direction Board<T>::get_random_direction(){
+  int i = random_integer(4);
+  if( i == 0 )
+    return Direction::BAS;
+  if( i == 1 )
+    return Direction::HAUT;
+  if( i == 2 )
+    return Direction::DROITE;
+  if( i == 3 )
+    return Direction::GAUCHE;
 }
 
 template <typename T>

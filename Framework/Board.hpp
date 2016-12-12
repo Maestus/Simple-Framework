@@ -23,7 +23,10 @@ public:
   std::vector <std::vector<Box<T>>>& get_plateau();
   void print();
   int random_integer(int);
+  void computer_play();
+  void set_enable_computer_play();
   virtual void init() = 0;
+  Direction get_random_direction();
   Direction do_one_move();
   virtual bool has_win() = 0;
   virtual bool apply_move(Direction) = 0;
@@ -37,6 +40,7 @@ private:
   const int matrix_length_x;
   const int matrix_length_y;
   std::vector <std::vector<Box<T>>> plateau;
+  bool enable_computer_play;
 };
 
 using namespace std;
