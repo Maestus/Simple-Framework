@@ -57,11 +57,19 @@ int main(int argc, char const *argv[]) {
       Module_2048 *a = launch_2048_module(x,y);
       a->init();
       a->print();
+      cout << "Joueur computer ? [Y|N] : ";
+      string computer;
+      cin >> computer;
+      if(computer ==  "Y"){
+        a->set_enable_computer_play();
+        cout << "~~~~~~~~~~~~~~~~ You Win ! ~~~~~~~~~~~~~~~~~~~" << endl;
+        exit(0); // Need to give the choice to the player to replay
+      }
       while(1){
         Direction choice = Direction::NOTKNOWN;
         choice = a->do_one_move();
         if(!(choice == Direction::NOTKNOWN)){
-          a->merge_tiles(choice);
+          a->apply_move(choice);
           cout << BORDURE << endl;
           cout << "score : " << a->get_score() << endl;
           cout << BORDURE << endl;
@@ -76,6 +84,14 @@ int main(int argc, char const *argv[]) {
       Taquin *a = new Taquin(x,y);
       a->init();
       a->print();
+      cout << "Joueur computer ? [Y|N] : ";
+      string computer;
+      cin >> computer;
+      if(computer ==  "Y"){
+        a->set_enable_computer_play();
+        cout << "~~~~~~~~~~~~~~~~ You Win ! ~~~~~~~~~~~~~~~~~~~" << endl;
+        exit(0); // Need to give the choice to the player to replay
+      }
       while(1){
         Direction choice = Direction::NOTKNOWN;
         choice = a->do_one_move();
