@@ -26,14 +26,14 @@ void Taquin::init(){
         }
       }
     }
-  }while(false); // ### HAVE TO BE CHANGED
+  }while(!has_solution());
 }
 
-void Taquin::get_greatest_element(int a,int res[2]){
-  int search = get_matrix_length_x()*get_matrix_length_y() - a;
+void Taquin::get_greatest_element(int a,int res[2],std::vector<std::vector<int>> t){
+  int search = a;
   for (int i = get_matrix_length_x() - 1; i >= 0; --i){
     for (int j = get_matrix_length_y() - 1; j >=0; --j){
-      if(search == get_plateau()[i][j].get_content()){
+      if(search == t[i][j]){
         res[0] = i;
         res[1] = j;
         return;
@@ -42,33 +42,49 @@ void Taquin::get_greatest_element(int a,int res[2]){
   }
 }
 
+int Taquin::zero_no_hikariga(){
+  int pos = 1;
+  for (int i = get_matrix_length_x() - 1; i >= 0; --i){
+    for (int j = get_matrix_length_y() - 1; j >=0; --j){
+      if(0 == get_plateau()[i][j].get_content())
+        return pos;
+      pos++;
+    }
+  }
+}
+
 bool Taquin::has_solution(){
   int inv_count = 0;
   int number = get_matrix_length_x()*get_matrix_length_y();
-  int solution[get_matrix_length_x()][get_matrix_length_y()];
+  std::vector<std::vector<int>> solution(get_matrix_length_x(),vector<int>(get_matrix_length_y()));
   for (int i = get_matrix_length_x() - 1; i >= 0; --i){
     for (int j = get_matrix_length_y() - 1; j >=0; --j){
       solution[i][j] = get_plateau()[i][j].get_content();
     }
   }
+  int tmp = solution[get_matrix_length_x()-1][get_matrix_length_y()-1];
+  int tab[2];
+  get_greatest_element(0,tab,solution);
+  solution[get_matrix_length_x()-1][get_matrix_length_y()-1] = 0;
+  solution[tab[0]][tab[1]] = tmp;
+  inv_count++;
+  number = 1;
   for (int i = get_matrix_length_x() - 1; i >= 0; --i){
+    std::vector<std::vector<int>> solution2 = solution;
     for (int j = get_matrix_length_y() - 1; j >=0; --j){
-      int tmp = solution[i][j];
-      solution[i][j] = get_matrix_length_x()*get_matrix_length_y() - number;
-      int tab[2];
-      get_greatest_element(number,tab);
-      solution[tab[0]][tab[1]] = tmp;
-      inv_count++;
-      if( i == get_matrix_length_x() - 1 && j == get_matrix_length_y() - 1)
-        number = 1;
-      else
-        number++;
+      if(solution[i][j] != (i*get_matrix_length_x()) + (j+1)){
+        if(!(i == get_matrix_length_x() - 1 && j == get_matrix_length_y() - 1)){
+          int tmp = solution[i][j];
+          solution[i][j] = (i*get_matrix_length_x()) + (j+1);
+          int tab[2];
+          get_greatest_element((i*get_matrix_length_x()) + (j+1),tab,solution2);
+          solution[tab[0]][tab[1]] = tmp;
+          inv_count++;
+        }
+      }
     }
   }
-  int tab[2];
-  get_greatest_element(get_matrix_length_x()*get_matrix_length_y(),tab);
-
-  return ((inv_count % 2 == 0) ? ((tab[0]*get_matrix_length_x() + tab[1]) % 2 == 0) : ((get_matrix_length_x()*get_matrix_length_y() - 1) % 2 != 0));
+  return (((get_matrix_length_x() % 2 != 0) && (get_matrix_length_y() % 2 != 0))  && (inv_count % 2 == 0)) || (((get_matrix_length_x() % 2 == 0) && (get_matrix_length_y() % 2 == 0))  && ((zero_no_hikariga() % 2 != 0) == (inv_count % 2 == 0)));
 }
 
 
