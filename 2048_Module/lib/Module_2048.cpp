@@ -12,7 +12,9 @@ bool Module_2048::has_empty(){
     return false;
 }
 
+
 bool Module_2048::apply_move(Direction d){
+  merge_tiles(d);
   bool has_moved = false;
   if(d == Direction::BAS){
     for(int x = get_matrix_length_x() - 1; x >= 0; --x){
@@ -63,6 +65,7 @@ bool Module_2048::apply_move(Direction d){
           if(lasty != y){
             get_plateau()[x][lasty] = get_plateau()[x][y];
             get_plateau()[x][y] = 0;
+            has_moved = true;
           }
         }
       }
@@ -80,11 +83,15 @@ bool Module_2048::apply_move(Direction d){
           if(lasty != y){
             get_plateau()[x][lasty] = get_plateau()[x][y];
             get_plateau()[x][y] = 0;
+            has_moved = true;
           }
         }
       }
     }
-  }return has_moved;
+  }
+  add_value();
+  reset_access();
+  return has_moved;
 }
 
 // Gives a random position from [0, grid_size]

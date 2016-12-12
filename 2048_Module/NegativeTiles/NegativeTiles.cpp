@@ -33,7 +33,6 @@ void NegativeTiles::add_value(){
 }
 
 void NegativeTiles::merge_tiles(Direction d){
-  bool has_merged = false;
   if(d == Direction::BAS){
     for(int x = get_matrix_length_x() - 1; x >= 0; --x){
       for(int y = 0; y < get_matrix_length_y() ; ++y){
@@ -50,14 +49,12 @@ void NegativeTiles::merge_tiles(Direction d){
             add_to_score(get_plateau()[x][y].get_content());
             get_plateau()[x][y].set_access(true);
             get_plateau()[nextx][y].set_content(0);
-            has_merged = true;
           }else if(nextx >= 0 && get_plateau()[nextx][y].get_content() == -get_plateau()[x][y].get_content()
             && !get_plateau()[nextx][y].is_access() && !get_plateau()[x][y].is_access()){
             get_plateau()[x][y].set_content(0);
             add_to_score(get_plateau()[x][y].get_content());
             get_plateau()[x][y].set_access(true);
             get_plateau()[nextx][y].set_content(0);
-            has_merged = true;
           }
         }
       }
@@ -78,14 +75,12 @@ void NegativeTiles::merge_tiles(Direction d){
             add_to_score(get_plateau()[nextx][y].get_content());
             get_plateau()[nextx][y].set_access(true);
             get_plateau()[x][y] = 0;
-            has_merged = true;
           }else if(nextx >= 0 && get_plateau()[nextx][y].get_content() == -get_plateau()[x][y].get_content()
             && !get_plateau()[nextx][y].is_access() && !get_plateau()[x][y].is_access()){
             get_plateau()[nextx][y].set_content(0);
             add_to_score(get_plateau()[x][y].get_content());
             get_plateau()[x][y].set_access(true);
             get_plateau()[nextx][y].set_content(0);
-            has_merged = true;
           }
         }
       }
@@ -106,14 +101,12 @@ void NegativeTiles::merge_tiles(Direction d){
             add_to_score(get_plateau()[x][nexty].get_content());
             get_plateau()[x][nexty].set_access(true);
             get_plateau()[x][y] = 0;
-            has_merged = true;
           }else if(nexty < get_matrix_length_y() && get_plateau()[x][nexty] == -get_plateau()[x][y]
             && !get_plateau()[x][nexty].is_access() && !get_plateau()[x][y].is_access()){
             get_plateau()[x][nexty] = 0;
             add_to_score(get_plateau()[x][nexty].get_content());
             get_plateau()[x][nexty].set_access(true);
             get_plateau()[x][y] = 0;
-            has_merged = true;
           }
         }
       }
@@ -134,20 +127,15 @@ void NegativeTiles::merge_tiles(Direction d){
             add_to_score(get_plateau()[x][nexty].get_content());
             get_plateau()[x][nexty].set_access(true);
             get_plateau()[x][y] = 0;
-            has_merged = true;
           }else if(nexty >=0 && get_plateau()[x][nexty] == -get_plateau()[x][y]
             && !get_plateau()[x][nexty].is_access() && !get_plateau()[x][y].is_access()){
             get_plateau()[x][nexty] = 0;
             add_to_score(get_plateau()[x][nexty].get_content());
             get_plateau()[x][nexty].set_access(true);
             get_plateau()[x][y] = 0;
-            has_merged = true;
           }
         }
       }
     }
   }
-  if(has_merged | apply_move(d))
-    add_value();
-  reset_access();
 }
