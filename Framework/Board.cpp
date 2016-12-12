@@ -105,10 +105,7 @@ void Board<T>::print(){
     if(i>0)
       cout << endl;
     for(int j = 0; j < matrix_length_y; j++)
-      if(plateau[i][j] == 0)
-        cout << "  .  ";
-      else
-        cout << "  " << plateau[i][j] << "  ";
+      cout << "  " << plateau[i][j].get_content() << "  ";
   }
   cout << endl;
 }

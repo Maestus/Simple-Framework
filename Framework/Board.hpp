@@ -21,7 +21,7 @@ public:
   int get_matrix_length_x();
   int get_matrix_length_y();
   std::vector <std::vector<Box<T>>>& get_plateau();
-  void print();
+  virtual void print();
   int random_integer(int);
   void computer_play();
   void set_enable_computer_play();
