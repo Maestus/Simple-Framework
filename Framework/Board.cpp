@@ -65,8 +65,13 @@ void Board<T>::computer_play(){
     do{
       d = get_random_direction();
     }while(!apply_move(d));
+    cout << "#################   "  << d <<  "   ##################" << endl;
+    if(score > 0){
+      cout << "#####################################################" << endl;
+      cout << "score : " << score << endl;
+      cout << "#####################################################" << endl;
+    }
     print();
-    cout << "####################################" << endl;
   }
 }
 
@@ -74,13 +79,13 @@ template <typename T>
 Direction Board<T>::get_random_direction(){
   int i = random_integer(4);
   if( i == 0 )
-    return Direction::BAS;
-  if( i == 1 )
     return Direction::HAUT;
+  if( i == 1 )
+    return Direction::BAS;
   if( i == 2 )
-    return Direction::DROITE;
-  if( i == 3 )
     return Direction::GAUCHE;
+  if( i == 3 )
+    return Direction::DROITE;
 }
 
 template <typename T>
