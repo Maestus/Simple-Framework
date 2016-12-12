@@ -19,9 +19,10 @@ int NegativeTiles::get_negativeTile(){
 }
 
 void NegativeTiles::add_value(){
-  int x, negative_x;
-  int y, negative_y;
+  int x = -1, negative_x;
+  int y = -1, negative_y;
   random_empty_pos(x, y);
+  if(y == -1 && x == -1) return;
   negative_x = rand_pos();
   negative_y = rand_pos();
   if(get_plateau()[negative_x][negative_y] == 0)
@@ -87,6 +88,32 @@ void NegativeTiles::merge_tiles(Direction d){
     }
   }else if(d == Direction::DROITE){
     for(int x = 0; x < get_matrix_length_x(); ++x){
+      for(int y = get_matrix_length_y() - 1; y >= 0; --y){
+        if(!(get_plateau()[x][y] == 0)){
+          int lasty = y;
+          int nexty = y - 1;
+          while(nexty >= 0 && get_plateau()[x][nexty] == 0){
+            lasty = nexty;
+            --nexty;
+          }
+          if(nexty >= 0 && get_plateau()[x][nexty] == get_plateau()[x][y]
+            && !get_plateau()[x][nexty].is_access() && !get_plateau()[x][y].is_access()){
+            get_plateau()[x][nexty] = get_plateau()[x][y]*valeur_initiale;
+            add_to_score(get_plateau()[x][nexty].get_content());
+            get_plateau()[x][nexty].set_access(true);
+            get_plateau()[x][y] = 0;
+          }else if(nexty >= 0 && get_plateau()[x][nexty] == -get_plateau()[x][y]
+            && !get_plateau()[x][nexty].is_access() && !get_plateau()[x][y].is_access()){
+            get_plateau()[x][nexty] = 0;
+            add_to_score(get_plateau()[x][nexty].get_content());
+            get_plateau()[x][nexty].set_access(true);
+            get_plateau()[x][y] = 0;
+          }
+        }
+      }
+    }
+  }else if(d == Direction::GAUCHE){
+    for(int x = 0; x < get_matrix_length_x(); ++x){
       for(int y = 0; y < get_matrix_length_y(); ++y){
         if(!(get_plateau()[x][y] == 0)){
           int lasty = y;
@@ -102,32 +129,6 @@ void NegativeTiles::merge_tiles(Direction d){
             get_plateau()[x][nexty].set_access(true);
             get_plateau()[x][y] = 0;
           }else if(nexty < get_matrix_length_y() && get_plateau()[x][nexty] == -get_plateau()[x][y]
-            && !get_plateau()[x][nexty].is_access() && !get_plateau()[x][y].is_access()){
-            get_plateau()[x][nexty] = 0;
-            add_to_score(get_plateau()[x][nexty].get_content());
-            get_plateau()[x][nexty].set_access(true);
-            get_plateau()[x][y] = 0;
-          }
-        }
-      }
-    }
-  }else if(d == Direction::GAUCHE){
-    for(int x = 0; x < get_matrix_length_x(); ++x){
-      for(int y = get_matrix_length_y() - 1; y >= 0; --y){
-        if(!(get_plateau()[x][y] == 0)){
-          int lasty = y;
-          int nexty = y - 1;
-          while(nexty >= 0 && get_plateau()[x][nexty] == 0){
-            lasty = nexty;
-            --nexty;
-          }
-          if(nexty >= 0 && get_plateau()[x][nexty] == get_plateau()[x][y]
-            && !get_plateau()[x][nexty].is_access() && !get_plateau()[x][y].is_access()){
-            get_plateau()[x][nexty] = get_plateau()[x][y]*valeur_initiale;
-            add_to_score(get_plateau()[x][nexty].get_content());
-            get_plateau()[x][nexty].set_access(true);
-            get_plateau()[x][y] = 0;
-          }else if(nexty >=0 && get_plateau()[x][nexty] == -get_plateau()[x][y]
             && !get_plateau()[x][nexty].is_access() && !get_plateau()[x][y].is_access()){
             get_plateau()[x][nexty] = 0;
             add_to_score(get_plateau()[x][nexty].get_content());

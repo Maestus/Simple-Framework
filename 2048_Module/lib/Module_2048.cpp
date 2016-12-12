@@ -121,3 +121,57 @@ bool Module_2048::has_win(){
   }
   return false;
 }
+
+void Module_2048::print(){
+  int max_min = 0;
+  for(int i = 0; i < get_matrix_length_x(); ++i){
+    for(int j = 0; j < get_matrix_length_y(); ++j){
+      if(get_plateau()[i][j].get_content() > max_min)
+        max_min = get_plateau()[i][j].get_content();
+      if(-get_plateau()[i][j].get_content() > max_min)
+        max_min = -get_plateau()[i][j].get_content();
+    }
+  }
+  string espacement = "      ";
+  for(int i = 0; i < get_matrix_length_x(); i++){
+    if(i>0)
+      cout << endl;
+    for(int j = 0; j < get_matrix_length_y(); j++){
+      if(get_plateau()[i][j].get_content() == 0){
+         cout << espacement << ".";
+      }else if(get_plateau()[i][j].get_content() < 0){
+        if(-get_plateau()[i][j].get_content() >= 10000){
+          string espacement2 = espacement.substr(0,espacement.size()-5);
+          cout << espacement2 << get_plateau()[i][j].get_content();
+        }else if(-get_plateau()[i][j].get_content() >= 1000 && -get_plateau()[i][j].get_content() < 10000){
+          string espacement2 = espacement.substr(0,espacement.size()-4);
+          cout << espacement2 << get_plateau()[i][j].get_content();
+        }else if(-get_plateau()[i][j].get_content() >= 100 && -get_plateau()[i][j].get_content() < 1000){
+          string espacement2 = espacement.substr(0,espacement.size()-3);
+          cout << espacement2 << get_plateau()[i][j].get_content();
+        }else if(-get_plateau()[i][j].get_content() >= 10 && -get_plateau()[i][j].get_content() < 100){
+          string espacement2 = espacement.substr(0,espacement.size()-2);
+          cout << espacement2 << get_plateau()[i][j].get_content();
+        }else{
+          string espacement2 = espacement.substr(0,espacement.size()-1);
+          cout << espacement2 << get_plateau()[i][j].get_content();
+        }
+      }else{
+        if(get_plateau()[i][j].get_content() >= 10000){
+          string espacement2 = espacement.substr(0,espacement.size()-4);
+          cout << espacement2 << get_plateau()[i][j].get_content();
+        }else if(get_plateau()[i][j].get_content() >= 1000 && get_plateau()[i][j].get_content() < 10000){
+          string espacement2 = espacement.substr(0,espacement.size()-3);
+          cout << espacement2 << get_plateau()[i][j].get_content();
+        }else if(get_plateau()[i][j].get_content() >= 100 && get_plateau()[i][j].get_content() < 1000){
+          string espacement2 = espacement.substr(0,espacement.size()-2);
+          cout << espacement2 << get_plateau()[i][j].get_content();
+        }else if(get_plateau()[i][j].get_content() >= 10 && get_plateau()[i][j].get_content() < 100){
+          string espacement2 = espacement.substr(0,espacement.size()-1);
+          cout << espacement2 << get_plateau()[i][j].get_content();
+        }else cout << espacement << get_plateau()[i][j].get_content();
+      }
+    }
+  }
+  cout << endl;
+}
