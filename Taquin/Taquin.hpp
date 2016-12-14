@@ -7,13 +7,9 @@
 class Taquin : public Board<int>{
 public:
   Taquin(int a, int b) : Board(a,b){}
-  bool has_solution();
-  virtual void print();
-  void get_greatest_element(int, int [], std::vector<std::vector<int>>);
-  int zero_no_hikariga();
   virtual void init();
   virtual bool apply_move(Direction);
-  virtual bool has_win();
+  virtual bool has_win(); 
 };
 
 using namespace std;
