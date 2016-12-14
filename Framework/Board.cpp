@@ -1,13 +1,9 @@
-template <class T>
-Board<T>::Board(): score(), matrix_length_x(), matrix_length_y(), plateau(), enable_computer_play(){};
-
-template <class T>
+template <typename T>
 Board<T>::Board(int a, int b): score(), matrix_length_x(a), matrix_length_y(b), plateau(matrix_length_x,vector<Box<T>>(matrix_length_y)), enable_computer_play(){
   if(a <= 1 || b <= 1){
     throw NotwellformedBoard(matrix_length_x,matrix_length_y);
   }
 }
-
 
 template <typename T>
 void Board<T>::set_enable_computer_play(){
@@ -19,7 +15,7 @@ template <typename T>
 int Board<T>::random_integer(int n){
   // Seed with a real random value, if available
   random_device r;
-  // Choose a random mean between 1 and 6
+  // Choose a random mean between 1 and n
   default_random_engine e1(r());
   uniform_int_distribution<int> uniform_dist(0, n);
   return uniform_dist(e1);
@@ -60,6 +56,7 @@ int Board<T>::get_matrix_length_y(){
 
 template <typename T>
 void Board<T>::computer_play(){
+  string input;
   Direction d;
   while (!has_win()) {
     do{
@@ -104,18 +101,62 @@ Direction Board<T>::do_one_move(){
   return Direction::NOTKNOWN;
 }
 
-template <typename T>
-void Board<T>::print(){
-  for(int i = 0; i < matrix_length_x; i++){
-    if(i>0)
-      cout << endl;
-    for(int j = 0; j < matrix_length_y; j++)
-      cout << "  " << plateau[i][j].get_content() << "  ";
-  }
-  cout << endl;
-}
 
 template <typename T>
 std::vector <std::vector<Box<T>>>& Board<T>::get_plateau(){
   return this->plateau;
+}
+
+template <typename T>
+void Board<T>::print(){
+  for(int i = 0; i < get_matrix_length_x(); i++){
+    if(i>0)
+      cout << endl;
+    for(int j = 0; j < get_matrix_length_y(); j++){
+      if(get_plateau()[i][j].get_content() == 0){
+         cout << "." << "\t";
+      }else{
+        cout << get_plateau()[i][j].get_content() << "\t";
+      }
+    }
+  }
+  cout << endl;
+}
+
+// Gives a random position from [0, grid_size]
+template <typename T>
+int Board<T>::rand_pos(){
+  return (get_matrix_length_x() < get_matrix_length_y()) ? random_integer(get_matrix_length_x() - 1) : random_integer(get_matrix_length_y() - 1);
+}
+
+// Sets the x and y with a random empty position
+template <typename T>
+void Board<T>::random_empty_pos(int& x, int& y){
+    if(!has_empty()){
+        return;
+    }
+    do{
+        x = rand_pos();
+        y = rand_pos();
+    }
+    while(!(get_plateau()[y][x] == 0));
+}
+
+//Return True if there is an empty Box
+template <typename T>
+bool Board<T>::has_empty(){
+    for(int x = 0; x < get_matrix_length_x(); ++x){
+      for(int y = 0; y < get_matrix_length_y(); ++y){
+        if(get_plateau()[y][x] == 0){
+                return true;
+        }
+      }
+    }
+    return false;
+}
+
+template <typename T>
+bool Board<T>::has_win(){
+  cout << "Wish to continue ? : ";
+  return true;
 }
