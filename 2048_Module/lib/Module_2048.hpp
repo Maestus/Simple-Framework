@@ -7,10 +7,6 @@
 class Module_2048 : public Board<int>{
 public:
   Module_2048(int,int);
-  bool has_empty();
-  int rand_pos();
-  virtual void print();
-  void random_empty_pos(int&, int&);
   virtual bool has_win();
   virtual void add_value() = 0;
   virtual bool apply_move(Direction);
