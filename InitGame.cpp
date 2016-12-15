@@ -89,8 +89,6 @@ int main(int argc, char const *argv[]) {
       cin >> computer;
       if(computer ==  "Y"){
         a->set_enable_computer_play();
-        cout << "~~~~~~~~~~~~~~~~ You Win ! ~~~~~~~~~~~~~~~~~~~" << endl;
-        exit(0); // Need to give the choice to the player to replay
       }
       while(1){
         Direction choice = Direction::NOTKNOWN;
