@@ -41,14 +41,14 @@ void TwoThreeFiveTiles::merge_tiles(Direction d){
       }
     }
   }else if(d == Direction::HAUT){
-    for(int x = get_matrix_length_x() - 1; x >= 0; --x){
+    for(int x = 0 ; x < get_matrix_length_x(); ++x){
       for(int y = 0; y < get_matrix_length_y() ; ++y){
         if(!(get_plateau()[x][y] == 0)){
           int lastx = x;
-          int nextx = x - 1;
-          while(nextx >= 0 && get_plateau()[nextx][y] == 0){
+          int nextx = x + 1;
+          while(nextx < get_matrix_length_x() && get_plateau()[nextx][y] == 0){
             lastx = nextx;
-            --nextx;
+            ++nextx;
           }
           if(nextx >= 0 && get_plateau()[nextx][y] == get_plateau()[x][y]
             && !get_plateau()[nextx][y].is_access() && !get_plateau()[x][y].is_access()){
