@@ -53,7 +53,6 @@ void NegativeTiles::merge_tiles(Direction d){
           }else if(nextx >= 0 && get_plateau()[nextx][y].get_content() == -get_plateau()[x][y].get_content()
             && !get_plateau()[nextx][y].is_access() && !get_plateau()[x][y].is_access()){
             get_plateau()[x][y].set_content(0);
-            add_to_score(get_plateau()[x][y].get_content());
             get_plateau()[x][y].set_access(true);
             get_plateau()[nextx][y].set_content(0);
           }
@@ -78,8 +77,7 @@ void NegativeTiles::merge_tiles(Direction d){
             get_plateau()[x][y] = 0;
           }else if(nextx < get_matrix_length_x() && get_plateau()[nextx][y].get_content() == -get_plateau()[x][y].get_content()
             && !get_plateau()[nextx][y].is_access() && !get_plateau()[x][y].is_access()){
-            get_plateau()[nextx][y].set_content(0);
-            add_to_score(get_plateau()[x][y].get_content());
+            get_plateau()[x][y].set_content(0);
             get_plateau()[x][y].set_access(true);
             get_plateau()[nextx][y].set_content(0);
           }
@@ -105,7 +103,6 @@ void NegativeTiles::merge_tiles(Direction d){
           }else if(nexty >= 0 && get_plateau()[x][nexty] == -get_plateau()[x][y]
             && !get_plateau()[x][nexty].is_access() && !get_plateau()[x][y].is_access()){
             get_plateau()[x][nexty] = 0;
-            add_to_score(get_plateau()[x][nexty].get_content());
             get_plateau()[x][nexty].set_access(true);
             get_plateau()[x][y] = 0;
           }
@@ -131,7 +128,6 @@ void NegativeTiles::merge_tiles(Direction d){
           }else if(nexty < get_matrix_length_y() && get_plateau()[x][nexty] == -get_plateau()[x][y]
             && !get_plateau()[x][nexty].is_access() && !get_plateau()[x][y].is_access()){
             get_plateau()[x][nexty] = 0;
-            add_to_score(get_plateau()[x][nexty].get_content());
             get_plateau()[x][nexty].set_access(true);
             get_plateau()[x][y] = 0;
           }
