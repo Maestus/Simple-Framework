@@ -1,9 +1,10 @@
-#include <SFML/System.hpp>
-#include <SFML/Graphics.hpp>
 #include "2048_Module/Classic/Playclassic.hpp"
 #include "2048_Module/ThreeAndFiveTiles/TwoThreeFiveTiles.hpp"
 #include "2048_Module/NegativeTiles/NegativeTiles.hpp"
 #include "Taquin/Taquin.hpp"
+#include <stdio.h>
+#include <string.h>
+#include "Graphic_mod/InitGraphic.hpp"
 
 #define BORDURE "##############################################################"
 
@@ -35,11 +36,18 @@ Module_2048* launch_2048_module(int& x, int& y){
 }
 
 int main(int argc, char const *argv[]) {
+  cout << argc << endl;
   int x = 0;
   int y = 0;
   string game_name;
   bool instantiation = false;
-  if(argc == 4){
+  bool graphic_mod = false;
+  if(argc == 5 && strcmp(argv[4],"--graphic") == 0){
+    cout << "ok" << endl;
+    graphic_mod = true;
+  }
+  if(argc >= 4){
+    cout << "ok" << endl;
     game_name = argv[1];
     const string & _x = argv[2];
     const string & _y = argv[3];
@@ -52,54 +60,67 @@ int main(int argc, char const *argv[]) {
       exit(1);
     }
   }
+
   try{
     if(game_name == "2048"){
       Module_2048 *a = launch_2048_module(x,y);
-      a->init();
-      a->print();
-      cout << "Joueur computer ? [Y|N] : ";
-      string computer;
-      cin >> computer;
-      if(computer ==  "Y"){
-        a->set_enable_computer_play();
-        cout << "~~~~~~~~~~~~~~~~ You Win ! ~~~~~~~~~~~~~~~~~~~" << endl;
-        exit(0); // Need to give the choice to the player to replay
-      }
-      while(1){
-        Direction choice = Direction::NOTKNOWN;
-        choice = a->do_one_move();
-        if(!(choice == Direction::NOTKNOWN)){
-          a->apply_move(choice);
-          cout << BORDURE << endl;
-          cout << "score : " << a->get_score() << endl;
-          cout << BORDURE << endl;
-          a->print();
-          if(a->has_win()){
-            cout << "~~~~~~~~~~~~~~~~ You Win ! ~~~~~~~~~~~~~~~~~~~" << endl;
-            exit(0); // Need to give the choice to the player to replay
+      if(graphic_mod){
+        a->init();
+        InitGraphic<Module_2048> graphic(a);
+        graphic.init_graphic_mode();
+      } else {
+        a->init();
+        a->print();
+        cout << "Joueur computer ? [Y|N] : ";
+        string computer;
+        cin >> computer;
+        if(computer ==  "Y"){
+          a->set_enable_computer_play();
+          cout << "~~~~~~~~~~~~~~~~ You Win ! ~~~~~~~~~~~~~~~~~~~" << endl;
+          exit(0); // Need to give the choice to the player to replay
+        }
+        while(1){
+          Direction choice = Direction::NOTKNOWN;
+          choice = a->do_one_move();
+          if(!(choice == Direction::NOTKNOWN)){
+            a->apply_move(choice);
+            cout << BORDURE << endl;
+            cout << "score : " << a->get_score() << endl;
+            cout << BORDURE << endl;
+            a->print();
+            if(a->has_win()){
+              cout << "~~~~~~~~~~~~~~~~ You Win ! ~~~~~~~~~~~~~~~~~~~" << endl;
+              exit(0); // Need to give the choice to the player to replay
+            }
           }
         }
       }
     }else if(game_name == "Taquin"){
       Taquin *a = new Taquin(x,y);
-      a->init();
-      a->print();
-      cout << "Joueur computer ? [Y|N] : ";
-      string computer;
-      cin >> computer;
-      if(computer ==  "Y"){
-        a->set_enable_computer_play();
-      }
-      while(1){
-        Direction choice = Direction::NOTKNOWN;
-        choice = a->do_one_move();
-        if(!(choice == Direction::NOTKNOWN)){
-          a->apply_move(choice);
-          cout << BORDURE << endl;
-          a->print();
-          if(a->has_win()){
-            cout << "~~~~~~~~~~~~~~~~ You Win ! ~~~~~~~~~~~~~~~~~~~" << endl;
-            exit(0); // Need to give the choice to the player to replay
+      if(graphic_mod){
+        a->init();
+        InitGraphic<Taquin> graphic(a);
+        graphic.init_graphic_mode();
+      } else {
+        a->init();
+        a->print();
+        cout << "Joueur computer ? [Y|N] : ";
+        string computer;
+        cin >> computer;
+        if(computer ==  "Y"){
+          a->set_enable_computer_play();
+        }
+        while(1){
+          Direction choice = Direction::NOTKNOWN;
+          choice = a->do_one_move();
+          if(!(choice == Direction::NOTKNOWN)){
+            a->apply_move(choice);
+            cout << BORDURE << endl;
+            a->print();
+            if(a->has_win()){
+              cout << "~~~~~~~~~~~~~~~~ You Win ! ~~~~~~~~~~~~~~~~~~~" << endl;
+              exit(0); // Need to give the choice to the player to replay
+            }
           }
         }
       }
