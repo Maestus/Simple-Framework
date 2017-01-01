@@ -60,7 +60,7 @@ bool Module_2048::apply_move(Direction d){
   }else if(d == Direction::GAUCHE){
     for(int x = 0; x < get_matrix_length_x(); ++x){
       for(int y = 0; y < get_matrix_length_y(); ++y){
-        if(!(get_plateau()[x][y] == 0)){
+        if(!(get_plateau()[x][y].get_content() == 0)){
           int lasty = y;
           int nexty = y - 1;
           while(nexty >= 0 && get_plateau()[x][nexty] == 0){
@@ -86,7 +86,20 @@ bool Module_2048::has_win(){
   for(int i = 0; i < get_matrix_length_x(); ++i){
     for(int j = 0; j < get_matrix_length_y(); ++j){
       if(get_plateau()[i][j].get_content() == 2048)
-        return Board<int>::has_win();
+        return true;
+    }
+  }
+  return false;
+}
+
+bool Module_2048::has_lose(){
+  if(!has_empty()){
+    for(int i = 0; i < get_matrix_length_x(); ++i){
+      for(int j = 0; j < get_matrix_length_y(); ++j){
+        if(i == 0){
+          return true;
+        }
+      }
     }
   }
   return false;

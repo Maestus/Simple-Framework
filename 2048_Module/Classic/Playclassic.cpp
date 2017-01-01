@@ -6,7 +6,7 @@ void Playclassic::init(){
     if(x == -1 && y == -1){
       return;
     }
-    get_plateau()[y][x] = ((random_integer(3) == 1) ? (valeur_initiale * valeur_initiale) : valeur_initiale);
+    get_plateau()[x][y] = ((random_integer(3) == 1) ? (valeur_initiale * valeur_initiale) : valeur_initiale);
   }
 }
 
@@ -15,7 +15,7 @@ void Playclassic::add_value(){
   int y = - 1;
   random_empty_pos(x, y);
   if(y == -1 && x == -1) return;
-  get_plateau()[y][x] = ((random_integer(3) == 1) ? (valeur_initiale * valeur_initiale) : valeur_initiale);
+  get_plateau()[x][y] = ((random_integer(3) == 1) ? (valeur_initiale * valeur_initiale) : valeur_initiale);
 }
 
 void Playclassic::merge_tiles(Direction d){

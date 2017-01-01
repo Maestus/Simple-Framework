@@ -23,8 +23,8 @@ void NegativeTiles::add_value(){
   int y = -1, negative_y;
   random_empty_pos(x, y);
   if(y == -1 && x == -1) return;
-  negative_x = rand_pos();
-  negative_y = rand_pos();
+  negative_x = rand_posx();
+  negative_y = rand_posy();
   if(get_plateau()[negative_x][negative_y] == 0)
     get_plateau()[y][x] = ((random_integer(3) == 1) ? (valeur_initiale * valeur_initiale) : valeur_initiale);
   else{
