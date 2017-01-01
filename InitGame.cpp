@@ -75,10 +75,8 @@ int main(int argc, char const *argv[]) {
         cin >> computer;
         if(computer ==  "Y"){
           a->set_enable_computer_play();
-          cout << "~~~~~~~~~~~~~~~~ You Win ! ~~~~~~~~~~~~~~~~~~~" << endl;
-          exit(0); // Need to give the choice to the player to replay
         }
-        while(1){
+        while(!a->has_win() && !a->has_lose()){
           Direction choice = Direction::NOTKNOWN;
           choice = a->do_one_move();
           if(!(choice == Direction::NOTKNOWN)){
@@ -89,7 +87,8 @@ int main(int argc, char const *argv[]) {
             a->print();
             if(a->has_win()){
               cout << "~~~~~~~~~~~~~~~~ You Win ! ~~~~~~~~~~~~~~~~~~~" << endl;
-              exit(0); // Need to give the choice to the player to replay
+            } else if(a->has_lose()) {
+              cout << "~~~~~~~~~~~~~~~~ You Lose ! ~~~~~~~~~~~~~~~~~~~" << endl;
             }
           }
         }
@@ -109,7 +108,7 @@ int main(int argc, char const *argv[]) {
         if(computer ==  "Y"){
           a->set_enable_computer_play();
         }
-        while(0){
+        while(!a->has_win() && !a->has_lose()){
           Direction choice = Direction::NOTKNOWN;
           choice = a->do_one_move();
           if(!(choice == Direction::NOTKNOWN)){
@@ -118,7 +117,8 @@ int main(int argc, char const *argv[]) {
             a->print();
             if(a->has_win()){
               cout << "~~~~~~~~~~~~~~~~ You Win ! ~~~~~~~~~~~~~~~~~~~" << endl;
-              exit(0); // Need to give the choice to the player to replay
+            } else if(a->has_lose()) {
+              cout << "~~~~~~~~~~~~~~~~ You Lose ! ~~~~~~~~~~~~~~~~~~~" << endl;
             }
           }
         }
