@@ -33,14 +33,22 @@ InitGraphic<T>::InitGraphic(T *a):instance(a){
   tileText.setStyle(sf::Text::Bold);
 
   gridTile.setSize(sf::Vector2f(tileSize, tileSize));
+
   titleText.setString("Framework Graphic Demo");
   titleText.setFont(font);
   titleText.setCharacterSize(25);
+
   gameOverText.setString("Game Over!");
   gameOverText.setFillColor(textColour);
   gameOverText.setFont(font);
   gameOverText.setCharacterSize(25);
   gameOverText.setStyle(sf::Text::Bold);
+
+  winText.setString("You Win!");
+  winText.setFillColor(textColour);
+  winText.setFont(font);
+  winText.setCharacterSize(25);
+  winText.setStyle(sf::Text::Bold);
 
   scoreText.setString(to_string(instance->get_score()));
   scoreText.setFont(font);
@@ -50,6 +58,7 @@ InitGraphic<T>::InitGraphic(T *a):instance(a){
   scoreDecoratorText.setString("score:");
 	scoreDecoratorText.setPosition(sf::Vector2f(titleText.getPosition().x + titleText.getGlobalBounds().width + 100, titleText.getPosition().y));
   showGameOver = false;
+  showWin = false;
 
 }
 
@@ -78,15 +87,18 @@ void InitGraphic<T>::rendergame(){
   // render the score info
 	scoreText.setString(to_string(instance->get_score()));
 	scoreText.setPosition(sf::Vector2f(scoreDecoratorText.getGlobalBounds().width + scoreDecoratorText.getPosition().x + 10 , titleText.getPosition().y));
-  gameOverText.setPosition(sf::Vector2f(scoreText.getPosition().x + scoreText.getGlobalBounds().width + 100, titleText.getPosition().y));
 	renderWindow.draw(scoreText);
 
 	renderWindow.draw(scoreDecoratorText);
 
 	// Handle game over display
 	if (showGameOver) {
+    gameOverText.setPosition(sf::Vector2f(scoreText.getPosition().x + scoreText.getGlobalBounds().width + 100, titleText.getPosition().y));
 		renderWindow.draw(gameOverText);
-	}
+	}else if(showWin){
+    winText.setPosition(sf::Vector2f(scoreText.getPosition().x + scoreText.getGlobalBounds().width + 100, titleText.getPosition().y));
+    renderWindow.draw(winText);
+  }
 
 	renderWindow.draw(titleText);
 	renderWindow.display();
@@ -129,7 +141,11 @@ void InitGraphic<T>::init_graphic_mode(){
 
     if(instance->has_lose()){
       showGameOver = true;
+    }else if(instance->has_win()){
+      showWin = true;
     }
+
+
 
     if (scheduledNumberAdd && clock.getElapsedTime() > addTimeout) {
       scheduledNumberAdd = false;

@@ -20,7 +20,7 @@ private:
   sf::RectangleShape gridTile;
   sf::Text titleText;
   sf::Text tileText;
-  sf::Text gameOverText;
-  bool showGameOver;
+  sf::Text gameOverText, winText;
+  bool showGameOver, showWin;
 };
 #include "InitGraphic.cpp"
