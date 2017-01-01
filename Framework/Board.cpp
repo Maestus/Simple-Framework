@@ -68,10 +68,9 @@ template <typename T>
 void Board<T>::computer_play(){
   string input;
   Direction d;
-  while (!has_win()) {
-    do{
-      d = get_random_direction();
-    }while(!apply_move(d));
+  while (!has_win() && !has_lose()) {
+    d = get_random_direction();
+    apply_move(d);
     cout << "#################   "  << d <<  "   ##################" << endl;
     if(score > 0){
       cout << "#####################################################" << endl;
@@ -79,21 +78,29 @@ void Board<T>::computer_play(){
       cout << "#####################################################" << endl;
     }
     print();
+    if(has_win()){
+      cout << "~~~~~~~~~~~~~~~~ You Win ! ~~~~~~~~~~~~~~~~~~~" << endl;
+    } else if(has_lose()) {
+      cout << "~~~~~~~~~~~~~~~~ You Lose ! ~~~~~~~~~~~~~~~~~~~" << endl;
+    }
+    cout << "Wish to continue ? [Y/N] : ";
+    cin >> input;
+    if(input != "Y"){
+      return;
+    }
   }
 }
 
 template <typename T>
 Direction Board<T>::get_random_direction(){
-  int i = random_integer(4);
+  int i = random_integer(3);
   if( i == 0 )
     return Direction::HAUT;
   if( i == 1 )
     return Direction::BAS;
   if( i == 2 )
     return Direction::GAUCHE;
-  if( i == 3 )
-    return Direction::DROITE;
-  return Direction::NOTKNOWN;
+  return Direction::DROITE;
 }
 
 template <typename T>
