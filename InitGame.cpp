@@ -36,7 +36,6 @@ Module_2048* launch_2048_module(int& x, int& y){
 }
 
 int main(int argc, char const *argv[]) {
-  cout << argc << endl;
   int x = 0;
   int y = 0;
   string game_name;
@@ -94,7 +93,7 @@ int main(int argc, char const *argv[]) {
             }
           }
         }
-      }
+      }delete a;
     }else if(game_name == "Taquin"){
       Taquin *a = new Taquin(x,y);
       if(graphic_mod){
@@ -110,7 +109,7 @@ int main(int argc, char const *argv[]) {
         if(computer ==  "Y"){
           a->set_enable_computer_play();
         }
-        while(1){
+        while(0){
           Direction choice = Direction::NOTKNOWN;
           choice = a->do_one_move();
           if(!(choice == Direction::NOTKNOWN)){
@@ -123,7 +122,7 @@ int main(int argc, char const *argv[]) {
             }
           }
         }
-      }
+      } delete a;
     }
   }catch(NotwellformedBoard &exception){
     if(!instantiation){
