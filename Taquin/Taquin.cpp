@@ -91,5 +91,5 @@ bool Taquin::has_win(){
       value++;
     }
   }
-  return Board<int>::has_win();
+  return true;
 }

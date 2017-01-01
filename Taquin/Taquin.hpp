@@ -9,7 +9,8 @@ public:
   Taquin(int a, int b) : Board(a,b){}
   virtual void init();
   virtual bool apply_move(Direction);
-  virtual bool has_win(); 
+  virtual bool has_win();
+  virtual ~Taquin(){};
 };
 
 using namespace std;
