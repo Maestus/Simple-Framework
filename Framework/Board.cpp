@@ -83,6 +83,7 @@ Direction Board<T>::get_random_direction(){
     return Direction::GAUCHE;
   if( i == 3 )
     return Direction::DROITE;
+  return Direction::NOTKNOWN;
 }
 
 template <typename T>
@@ -123,11 +124,18 @@ void Board<T>::print(){
   cout << endl;
 }
 
-// Gives a random position from [0, grid_size]
+// Gives a random position from [0, grid_size_x]
 template <typename T>
-int Board<T>::rand_pos(){
-  return (get_matrix_length_x() < get_matrix_length_y()) ? random_integer(get_matrix_length_x() - 1) : random_integer(get_matrix_length_y() - 1);
+int Board<T>::rand_posx(){
+  return random_integer(get_matrix_length_x() - 1);
 }
+
+// Gives a random position from [0, grid_size_y]
+template <typename T>
+int Board<T>::rand_posy(){
+  return  random_integer(get_matrix_length_y() - 1);
+}
+
 
 // Sets the x and y with a random empty position
 template <typename T>
@@ -136,10 +144,10 @@ void Board<T>::random_empty_pos(int& x, int& y){
         return;
     }
     do{
-        x = rand_pos();
-        y = rand_pos();
+        x = rand_posx();
+        y = rand_posy();
     }
-    while(!(get_plateau()[y][x] == 0));
+    while(!(get_plateau()[x][y] == 0));
 }
 
 //Return True if there is an empty Box
@@ -147,8 +155,8 @@ template <typename T>
 bool Board<T>::has_empty(){
     for(int x = 0; x < get_matrix_length_x(); ++x){
       for(int y = 0; y < get_matrix_length_y(); ++y){
-        if(get_plateau()[y][x] == 0){
-                return true;
+        if(get_plateau()[x][y] == 0){
+          return true;
         }
       }
     }
@@ -156,7 +164,6 @@ bool Board<T>::has_empty(){
 }
 
 template <typename T>
-bool Board<T>::has_win(){
-  cout << "Wish to continue ? : ";
-  return true;
+bool Board<T>::has_lose(){
+  return false;
 }
