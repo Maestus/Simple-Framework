@@ -94,13 +94,26 @@ bool Module_2048::has_win(){
 
 bool Module_2048::has_lose(){
   if(!has_empty()){
-    for(int i = 0; i < get_matrix_length_x(); ++i){
-      for(int j = 0; j < get_matrix_length_y(); ++j){
-        if(i == 0){
-          return true;
-        }
+    for(int i = 0; i < get_matrix_length_x() - 1; ++i){
+      for(int j = 0; j < get_matrix_length_y() - 1; ++j){
+          if(get_plateau()[i][j] == get_plateau()[i][j+1] || get_plateau()[i][j] == get_plateau()[i+1][j])
+            return false;
       }
     }
+
+    int i = get_matrix_length_x() - 1;
+    for(int j = 0; j < get_matrix_length_y() - 1; ++j){
+      if(get_plateau()[i][j] == get_plateau()[i][j+1])
+        return false;
+    }
+
+    int j = get_matrix_length_y() - 1;
+    for(int i = 0; i < get_matrix_length_x() - 1; ++i){
+      if(get_plateau()[i][j] == get_plateau()[i+1][j])
+        return false;
+    }
+
+    return true;
   }
   return false;
 }
