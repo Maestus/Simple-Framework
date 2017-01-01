@@ -6,7 +6,7 @@ void TwoThreeFiveTiles::init(){
     if(x == -1 && y == -1){
       return;
     }
-    get_plateau()[y][x] = ((random_integer(2) == 1) ? ((random_integer(2) == 1) ? valeur_initiale[0] : valeur_initiale[1]) : valeur_initiale[2]);
+    get_plateau()[x][y] = ((random_integer(2) == 1) ? ((random_integer(2) == 1) ? valeur_initiale[0] : valeur_initiale[1]) : valeur_initiale[2]);
   }
 }
 
@@ -15,7 +15,7 @@ void TwoThreeFiveTiles::add_value(){
   int y = -1;
   random_empty_pos(x, y);
   if(y == -1 && x == -1) return;
-  get_plateau()[y][x] = ((random_integer(2) == 1) ? ((random_integer(2) == 1) ? valeur_initiale[0] : valeur_initiale[1]) : valeur_initiale[2]);
+  get_plateau()[x][y] = ((random_integer(2) == 1) ? ((random_integer(2) == 1) ? valeur_initiale[0] : valeur_initiale[1]) : valeur_initiale[2]);
 }
 
 void TwoThreeFiveTiles::merge_tiles(Direction d){
@@ -50,8 +50,7 @@ void TwoThreeFiveTiles::merge_tiles(Direction d){
             lastx = nextx;
             ++nextx;
           }
-          if(nextx >= 0 && get_plateau()[nextx][y] == get_plateau()[x][y]
-            && !get_plateau()[nextx][y].is_access() && !get_plateau()[x][y].is_access()){
+          if(nextx < get_matrix_length_x() && get_plateau()[nextx][y] == get_plateau()[x][y] && !get_plateau()[nextx][y].is_access() && !get_plateau()[x][y].is_access()){
             get_plateau()[nextx][y] = get_plateau()[x][y]
               *((get_plateau()[nextx][y].get_content() % 3 == 0) ? valeur_initiale[1] : ((get_plateau()[nextx][y].get_content() % 5 == 0) ? valeur_initiale[2] : valeur_initiale[0]));
             add_to_score(get_plateau()[nextx][y].get_content());

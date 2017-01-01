@@ -6,7 +6,7 @@ void NegativeTiles::init(){
     if(x == -1 && y == -1){
       return;
     }
-    get_plateau()[y][x] = ((random_integer(3) == 1) ? (valeur_initiale * valeur_initiale) : valeur_initiale);
+    get_plateau()[x][y] = ((random_integer(3) == 1) ? (valeur_initiale * valeur_initiale) : valeur_initiale);
   }
 }
 
@@ -26,10 +26,10 @@ void NegativeTiles::add_value(){
   negative_x = rand_posx();
   negative_y = rand_posy();
   if(get_plateau()[negative_x][negative_y] == 0)
-    get_plateau()[y][x] = ((random_integer(3) == 1) ? (valeur_initiale * valeur_initiale) : valeur_initiale);
+    get_plateau()[x][y] = ((random_integer(3) == 1) ? (valeur_initiale * valeur_initiale) : valeur_initiale);
   else{
     set_negativeTile(-get_plateau()[negative_x][negative_y].get_content());
-    get_plateau()[y][x] = ((random_integer(2) == 1) ? ((random_integer(2) == 1) ? valeur_initiale * valeur_initiale : valeur_initiale) : negativetile);
+    get_plateau()[x][y] = ((random_integer(2) == 1) ? ((random_integer(2) == 1) ? valeur_initiale * valeur_initiale : valeur_initiale) : negativetile);
   }
 }
 
