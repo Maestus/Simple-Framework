@@ -1,8 +1,18 @@
 template <typename T>
-Board<T>::Board(int a, int b): score(), matrix_length_x(a), matrix_length_y(b), plateau(matrix_length_x,vector<Box<T>>(matrix_length_y)), enable_computer_play(){
+Board<T>::Board(int a, int b): score(), matrix_length_x(a), matrix_length_y(b), enable_computer_play(){
   if(a <= 1 || b <= 1){
     throw NotwellformedBoard(matrix_length_x,matrix_length_y);
   }
+  plateau = new Box<T>*[matrix_length_x];
+  for(int i = 0; i < matrix_length_x; i++){
+    plateau[i] = new Box<T>[matrix_length_y];
+  }
+}
+
+template <typename T>
+Board<T>::~Board(){
+  for(int i = 0; i < matrix_length_x; i++)
+    delete [] plateau[i];
 }
 
 template <typename T>
@@ -104,7 +114,7 @@ Direction Board<T>::do_one_move(){
 
 
 template <typename T>
-std::vector <std::vector<Box<T>>>& Board<T>::get_plateau(){
+Box<T>** Board<T>::get_plateau(){
   return this->plateau;
 }
 

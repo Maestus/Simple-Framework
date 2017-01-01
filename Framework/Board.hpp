@@ -16,10 +16,11 @@
 template <typename T>
 class Board : public Box<T>{
 public:
+  virtual ~Board();
   Board(int,int);
   int get_matrix_length_x();
   int get_matrix_length_y();
-  std::vector <std::vector<Box<T>>>& get_plateau();
+  Box<T>** get_plateau();
   void print();
   int rand_posx();
   int rand_posy();
@@ -34,7 +35,6 @@ public:
   virtual bool has_lose();
   virtual bool has_win() = 0;
   virtual bool apply_move(Direction) = 0;
-  operator std::vector <std::vector<Box<T>>>() const { return plateau; }
   void add_to_score(int);
   int get_score();
   int getGridSize();
@@ -43,7 +43,7 @@ private:
   int score;
   const int matrix_length_x;
   const int matrix_length_y;
-  std::vector <std::vector<Box<T>>> plateau;
+  Box<T> **plateau;
   bool enable_computer_play;
 };
 
