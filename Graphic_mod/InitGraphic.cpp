@@ -73,8 +73,12 @@ void InitGraphic<T>::rendergame(){
       gridTile.setFillColor(sf::Color::Black);
       renderWindow.draw(gridTile);
 
-      if (instance->get_plateau()[ix][iy] > 0 || instance->get_plateau()[ix][iy] < 0) {
-        tileText.setString(to_string(instance->get_plateau()[ix][iy]));
+      if (instance->get_plateau()[ix][iy] != instance->get_void_value()) {
+        stringstream ss;
+        string s;
+        ss << instance->get_plateau()[ix][iy].get_content();
+        ss >> s;
+        tileText.setString(s);
         tileText.setCharacterSize(14);
         sf::Vector2f textPosition = (gridTile.getPosition() + (gridTile.getSize() / 2.f));
         textPosition.x -= tileText.getGlobalBounds().width / 2.f;

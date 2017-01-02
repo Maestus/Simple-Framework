@@ -1,5 +1,6 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <sstream>
 template <typename T>
 class InitGraphic {
 public:
