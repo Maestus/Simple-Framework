@@ -32,6 +32,8 @@ bool Sokoban::apply_move(Direction d){
               if(!((x + 3 <= get_matrix_length_x() - 1) && get_plateau()[x+2][y] == tonneau)){
                 get_plateau()[x+2][y].set_content(get_plateau()[x+1][y].get_content());
                 get_plateau()[x+1][y].set_content(get_plateau()[x][y].get_content());
+                last_position_x = x + 1;
+                last_position_y = y ;
                 if(std::find(interrupteurs.begin(), interrupteurs.end(), std::make_pair( x, y )) != interrupteurs.end())
                     get_plateau()[x][y].set_content(interrupteur);
                 else
@@ -41,6 +43,8 @@ bool Sokoban::apply_move(Direction d){
             }
             else if(get_plateau()[x+1][y] != tonneau){
               get_plateau()[x+1][y].set_content(get_plateau()[x][y].get_content());
+              last_position_x = x + 1;
+              last_position_y = y ;
               if(std::find(interrupteurs.begin(), interrupteurs.end(), std::make_pair( x, y )) != interrupteurs.end())
                   get_plateau()[x][y].set_content(interrupteur);
               else
@@ -60,6 +64,8 @@ bool Sokoban::apply_move(Direction d){
               if(!((x - 3 >= 0) && get_plateau()[x-2][y] == tonneau)){
                 get_plateau()[x-2][y].set_content(get_plateau()[x-1][y].get_content());
                 get_plateau()[x-1][y].set_content(get_plateau()[x][y].get_content());
+                last_position_x = x - 1;
+                last_position_y = y ;
                 if(std::find(interrupteurs.begin(), interrupteurs.end(), std::make_pair( x, y )) != interrupteurs.end())
                     get_plateau()[x][y].set_content(interrupteur);
                 else
@@ -69,6 +75,8 @@ bool Sokoban::apply_move(Direction d){
             }
             else if(get_plateau()[x-1][y] != tonneau){
               get_plateau()[x-1][y].set_content(get_plateau()[x][y].get_content());
+              last_position_x = x - 1;
+              last_position_y = y ;
               if(std::find(interrupteurs.begin(), interrupteurs.end(), std::make_pair( x, y )) != interrupteurs.end())
                   get_plateau()[x][y].set_content(interrupteur);
               else
@@ -88,6 +96,8 @@ bool Sokoban::apply_move(Direction d){
               if(!((y + 3 <= get_matrix_length_y() - 1) && get_plateau()[x][y+2] == tonneau)){
                 get_plateau()[x][y+2].set_content(get_plateau()[x][y+1].get_content());
                 get_plateau()[x][y+1].set_content(get_plateau()[x][y].get_content());
+                last_position_x = x;
+                last_position_y = y + 1;
                 if(std::find(interrupteurs.begin(), interrupteurs.end(), std::make_pair( x, y )) != interrupteurs.end())
                     get_plateau()[x][y].set_content(interrupteur);
                 else
@@ -97,6 +107,8 @@ bool Sokoban::apply_move(Direction d){
             }
             else if(get_plateau()[x][y+1] != tonneau){
               get_plateau()[x][y+1].set_content(get_plateau()[x][y].get_content());
+              last_position_x = x;
+              last_position_y = y + 1;
               if(std::find(interrupteurs.begin(), interrupteurs.end(), std::make_pair( x, y )) != interrupteurs.end())
                   get_plateau()[x][y].set_content(interrupteur);
               else
@@ -116,6 +128,8 @@ bool Sokoban::apply_move(Direction d){
               if(!((y - 3 >= 0) && get_plateau()[x][y-2] == tonneau)){
                 get_plateau()[x][y-2].set_content(get_plateau()[x][y-1].get_content());
                 get_plateau()[x][y-1].set_content(get_plateau()[x][y].get_content());
+                last_position_x = x;
+                last_position_y = y - 1;
                 if(std::find(interrupteurs.begin(), interrupteurs.end(), std::make_pair( x, y )) != interrupteurs.end())
                     get_plateau()[x][y].set_content(interrupteur);
                 else
@@ -125,6 +139,8 @@ bool Sokoban::apply_move(Direction d){
             }
             else if(get_plateau()[x][y-1] != tonneau){
               get_plateau()[x][y-1].set_content(get_plateau()[x][y].get_content());
+              last_position_x = x;
+              last_position_y = y - 1;
               if(std::find(interrupteurs.begin(), interrupteurs.end(), std::make_pair( x, y )) != interrupteurs.end())
                   get_plateau()[x][y].set_content(interrupteur);
               else
@@ -150,7 +166,7 @@ bool Sokoban::has_win(){
         res = false;
     }
   }
-  if(nb_element == nb_interrupteurs)
+  if(nb_element == nb_interrupteurs && !(std::find(interrupteurs.begin(), interrupteurs.end(), std::make_pair( last_position_x, last_position_y)) != interrupteurs.end()))
     return res;
   return false;
 }

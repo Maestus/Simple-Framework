@@ -13,9 +13,7 @@ public:
   virtual bool apply_move(Direction);
   char get_void_value(){return void_value;}
   virtual bool has_win();
-  virtual ~Sokoban(){
-    // erase interrupteurs
-  };
+  virtual ~Sokoban(){};
 private:
   std::vector <std::pair <int, int>> interrupteurs;
   char personnage;
