@@ -1,14 +1,9 @@
 using namespace std;
 
-sf::Color windowBGColour(250, 248, 239, 255);
- sf::Color gridBGColour(187, 173, 160, 255);
- sf::Color menuBGColour(187, 173, 255, 255);
- sf::Color textColour(67, 53, 40, 255);
-
 template <typename T>
 InitGraphic<T>::InitGraphic(T *a):instance(a){
 
-  if (!font.loadFromFile("/home/rached/C++/Simple-Framework/Graphic_mod/ressources/font/ClearSans-Bold.ttf")) {
+  if (!font.loadFromFile("Graphic_mod/ressources/font/ClearSans-Bold.ttf")) {
     printf("Font fail\r\n");
     exit(1);
   }
@@ -19,13 +14,13 @@ InitGraphic<T>::InitGraphic(T *a):instance(a){
 
   // Set up the title text
   titleText.setStyle(sf::Text::Bold);
-  titleText.setFillColor(textColour);
+  titleText.setFillColor(sf::Color(67, 53, 40, 255));
   titleText.setPosition(sf::Vector2f(10, 25));
 
   // Set up the score text objects
   scoreText.setStyle(sf::Text::Bold);
-  scoreText.setFillColor(textColour);
-  scoreDecoratorText.setFillColor(textColour);
+  scoreText.setFillColor(sf::Color(67, 53, 40, 255));
+  scoreDecoratorText.setFillColor(sf::Color(67, 53, 40, 255));
 
   // Set up the tile text
   tileText.setFont(font);
@@ -39,13 +34,13 @@ InitGraphic<T>::InitGraphic(T *a):instance(a){
   titleText.setCharacterSize(25);
 
   gameOverText.setString("Game Over!");
-  gameOverText.setFillColor(textColour);
+  gameOverText.setFillColor(sf::Color(67, 53, 40, 255));
   gameOverText.setFont(font);
   gameOverText.setCharacterSize(25);
   gameOverText.setStyle(sf::Text::Bold);
 
   winText.setString("You Win!");
-  winText.setFillColor(textColour);
+  winText.setFillColor(sf::Color(67, 53, 40, 255));
   winText.setFont(font);
   winText.setCharacterSize(25);
   winText.setStyle(sf::Text::Bold);
@@ -65,7 +60,7 @@ InitGraphic<T>::InitGraphic(T *a):instance(a){
 
 template <typename T>
 void InitGraphic<T>::rendergame(){
-  renderWindow.clear(windowBGColour);
+  renderWindow.clear(sf::Color(250, 248, 239, 255));
 
   for (int ix = 0; ix < instance->get_matrix_length_x(); ix++) {
     for (int iy = 0; iy < instance->get_matrix_length_y(); iy++) {
@@ -141,7 +136,7 @@ void InitGraphic<T>::init_graphic_mode(){
 			}
     }
 
-    renderWindow.clear(sf::Color(255, 255, 255));
+    renderWindow.clear(sf::Color(250, 248, 239, 255));
 
     if(instance->has_lose()){
       showGameOver = true;
