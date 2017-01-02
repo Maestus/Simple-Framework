@@ -1,10 +1,12 @@
-#include "2048_Module/Classic/Playclassic.hpp"
-#include "2048_Module/ThreeAndFiveTiles/TwoThreeFiveTiles.hpp"
-#include "2048_Module/NegativeTiles/NegativeTiles.hpp"
-#include "Taquin/Taquin.hpp"
+#include "Graphic_mod/InitGraphic.cpp"
+#include "2048_Module/Classic/Playclassic.cpp"
+#include "2048_Module/ThreeAndFiveTiles/TwoThreeFiveTiles.cpp"
+#include "2048_Module/NegativeTiles/NegativeTiles.cpp"
+#include "Taquin/Taquin.cpp"
 #include <stdio.h>
 #include <string.h>
-#include "Graphic_mod/InitGraphic.hpp"
+#include <iostream>
+using namespace std;
 
 #define BORDURE "##############################################################"
 

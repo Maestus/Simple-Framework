@@ -1,4 +1,6 @@
 using namespace std;
+#include "InitGraphic.hpp"
+
 
 sf::Color windowBGColour(250, 248, 239, 255);
  sf::Color gridBGColour(187, 173, 160, 255);

@@ -1,7 +1,7 @@
-#ifndef __NEGATIVE_TILES__
-#define __NEGATIVE_TILES__
-
+#ifndef __MODULE_2048__
+#define __MODULE_2048__
 #include "../lib/Module_2048.hpp"
+#endif
 
 class NegativeTiles : public Module_2048 {
 private:
@@ -15,7 +15,3 @@ public:
   void set_negativeTile(int);
   int get_negativeTile();
 };
-
-#include "NegativeTiles.cpp"
-
-#endif

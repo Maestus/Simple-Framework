@@ -1,7 +1,10 @@
-CC = g++
-CCC = g++ -c
-CFLAGS = -g -Wall
-NAME=Main
+CPP = g++ -Wall -c
 
-all:
-	$(CC) Box.hpp Board.hpp Board.cpp Module_2048.cpp -o $(NAME)
+all: Board.o
+
+Board.o: ../Exceptions/NotwellformedBoard.hpp Enum_Direction/Direction.hpp Box.hpp Board.hpp Board.cpp
+	$(CPP) $^
+
+clean:
+	rm *.o
+	rm *.gch

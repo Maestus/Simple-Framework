@@ -1,8 +1,10 @@
-#ifndef __MODULE_2048_HPP__
-#define __MODULE_2048_HPP__
 #include <iostream>
 #include <random>
+
+#ifndef __BOARD__
+#define __BOARD__
 #include "../../Framework/Board.hpp"
+#endif
 
 class Module_2048 : public Board<int>{
 public:
@@ -13,8 +15,3 @@ public:
   virtual bool apply_move(Direction);
   virtual void merge_tiles(Direction) = 0;
 };
-
-using namespace std;
-#include "Module_2048.cpp"
-
-#endif

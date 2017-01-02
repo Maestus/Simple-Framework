@@ -1,7 +1,7 @@
-#ifndef __PLAY_CLASSIC__
-#define __PLAY_CLASSIC__
-
+#ifndef __MODULE_2048__
+#define __MODULE_2048__
 #include "../lib/Module_2048.hpp"
+#endif
 
 class Playclassic : public Module_2048 {
 private:
@@ -12,7 +12,3 @@ public:
   virtual void add_value();
   virtual void merge_tiles(Direction);
 };
-
-#include "Playclassic.cpp"
-
-#endif

@@ -1,5 +1,11 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+
+#ifndef __DIRECTION__
+#define __DIRECTION__
+#include "../Framework/Enum_Direction/Direction.hpp"
+#endif
+
 template <typename T>
 class InitGraphic {
 public:
@@ -23,4 +29,3 @@ private:
   sf::Text gameOverText, winText;
   bool showGameOver, showWin;
 };
-#include "InitGraphic.cpp"

@@ -1,3 +1,5 @@
+#include "TwoThreeFiveTiles.hpp"
+
 void TwoThreeFiveTiles::init(){
   for(int i = 0; i < 2; ++i){
     int x = -1;

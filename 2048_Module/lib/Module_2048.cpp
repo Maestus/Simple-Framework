@@ -1,3 +1,6 @@
+using namespace std;
+#include "Module_2048.hpp"
+
 Module_2048::Module_2048(int x_length, int y_length): Board(x_length, y_length){}
 
 bool Module_2048::apply_move(Direction d){

@@ -1,8 +1,9 @@
-#ifndef __TAQUIN__
-#define __TAQUIN__
-
 #include <iostream>
+
+#ifndef __BOARD__
+#define __BOARD__
 #include "../Framework/Board.hpp"
+#endif
 
 class Taquin : public Board<int>{
 public:
@@ -12,8 +13,3 @@ public:
   virtual bool has_win();
   virtual ~Taquin(){};
 };
-
-using namespace std;
-#include "Taquin.cpp"
-
-#endif

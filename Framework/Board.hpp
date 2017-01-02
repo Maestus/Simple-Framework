@@ -1,12 +1,13 @@
-#ifndef __BOARD_HPP__
-#define __BOARD_HPP__
-
 #include <iostream>
+#include <random>
 #include <vector>
 #include "Box.hpp"
 #include "../Exceptions/NotwellformedBoard.hpp"
-#include "Enum_Direction/Direction.hpp"
 
+#ifndef __DIRECTION__
+#define __DIRECTION__
+#include "Enum_Direction/Direction.hpp"
+#endif
 
 #define KEYHAUT "z"
 #define KEYBAS "s"
@@ -46,8 +47,3 @@ private:
   Box<T> **plateau;
   bool enable_computer_play;
 };
-
-using namespace std;
-#include "Board.cpp"
-
-#endif

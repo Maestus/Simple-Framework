@@ -1,3 +1,6 @@
+#include "Taquin.hpp"
+using namespace std;
+
 void Taquin::init(){
   int length = (get_matrix_length_x()*get_matrix_length_y());
   int list_of_number[length];

@@ -1,3 +1,5 @@
+#include "NegativeTiles.hpp"
+
 void NegativeTiles::init(){
   for(int i = 0; i < 2; ++i){
     int x = -1;
@@ -38,10 +40,8 @@ void NegativeTiles::merge_tiles(Direction d){
     for(int x = get_matrix_length_x() - 1; x >= 0; --x){
       for(int y = 0; y < get_matrix_length_y() ; ++y){
         if(!(get_plateau()[x][y].get_content() == 0)){
-          int lastx = x;
           int nextx = x - 1;
           while(nextx >= 0 && get_plateau()[nextx][y].get_content() == 0){
-            lastx = nextx;
             --nextx;
           }
           if(nextx >= 0 && get_plateau()[nextx][y].get_content() == get_plateau()[x][y].get_content()
@@ -63,10 +63,8 @@ void NegativeTiles::merge_tiles(Direction d){
     for(int x = 0 ; x < get_matrix_length_x(); ++x){
       for(int y = 0; y < get_matrix_length_y() ; ++y){
         if(!(get_plateau()[x][y] == 0)){
-          int lastx = x;
           int nextx = x + 1;
           while(nextx < get_matrix_length_x() && get_plateau()[nextx][y] == 0){
-            lastx = nextx;
             ++nextx;
           }
           if(nextx < get_matrix_length_x() && get_plateau()[nextx][y] == get_plateau()[x][y]
@@ -88,10 +86,8 @@ void NegativeTiles::merge_tiles(Direction d){
     for(int x = 0; x < get_matrix_length_x(); ++x){
       for(int y = get_matrix_length_y() - 1; y >= 0; --y){
         if(!(get_plateau()[x][y] == 0)){
-          int lasty = y;
           int nexty = y - 1;
           while(nexty >= 0 && get_plateau()[x][nexty] == 0){
-            lasty = nexty;
             --nexty;
           }
           if(nexty >= 0 && get_plateau()[x][nexty] == get_plateau()[x][y]
@@ -113,10 +109,8 @@ void NegativeTiles::merge_tiles(Direction d){
     for(int x = 0; x < get_matrix_length_x(); ++x){
       for(int y = 0; y < get_matrix_length_y(); ++y){
         if(!(get_plateau()[x][y] == 0)){
-          int lasty = y;
           int nexty = y + 1;
           while(nexty < get_matrix_length_y() && get_plateau()[x][nexty] == 0){
-            lasty = nexty;
             ++nexty;
           }
           if(nexty < get_matrix_length_y() && get_plateau()[x][nexty] == get_plateau()[x][y]

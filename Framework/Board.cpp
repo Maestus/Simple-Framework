@@ -1,3 +1,6 @@
+using namespace std;
+#include "Board.hpp"
+
 template <typename T>
 Board<T>::Board(int a, int b): score(), matrix_length_x(a), matrix_length_y(b), enable_computer_play(){
   if(a <= 1 || b <= 1){
