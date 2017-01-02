@@ -1,4 +1,4 @@
-Module_2048::Module_2048(int x_length, int y_length): Board(x_length, y_length){}
+Module_2048::Module_2048(int x_length, int y_length, int e=0): Board(x_length, y_length), void_value(e){}
 
 bool Module_2048::apply_move(Direction d){
   merge_tiles(d);
@@ -116,4 +116,19 @@ bool Module_2048::has_lose(){
     return true;
   }
   return false;
+}
+
+void Module_2048::print(){
+  for(int i = 0; i < get_matrix_length_x(); i++){
+    if(i>0)
+      cout << endl;
+    for(int j = 0; j < get_matrix_length_y(); j++){
+      if(get_plateau()[i][j].get_content() == void_value){
+         cout << "." << "\t";
+      }else{
+        cout << get_plateau()[i][j].get_content() << "\t";
+      }
+    }
+  }
+  cout << endl;
 }
