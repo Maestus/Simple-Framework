@@ -21,7 +21,7 @@ public:
   int get_matrix_length_x();
   int get_matrix_length_y();
   Box<T>** get_plateau();
-  void print();
+  virtual void print();
   int rand_posx();
   int rand_posy();
   void random_empty_pos(int&,int&);

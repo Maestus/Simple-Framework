@@ -131,11 +131,7 @@ void Board<T>::print(){
     if(i>0)
       cout << endl;
     for(int j = 0; j < get_matrix_length_y(); j++){
-      if(get_plateau()[i][j].get_content() == 0){
-         cout << "." << "\t";
-      }else{
-        cout << get_plateau()[i][j].get_content() << "\t";
-      }
+        cout <<  get_plateau()[i][j].get_content() << "\t";
     }
   }
   cout << endl;
