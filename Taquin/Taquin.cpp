@@ -93,3 +93,18 @@ bool Taquin::has_win(){
   }
   return true;
 }
+
+void Taquin::print(){
+  for(int i = 0; i < get_matrix_length_x(); i++){
+    if(i>0)
+      cout << endl;
+    for(int j = 0; j < get_matrix_length_y(); j++){
+      if(get_plateau()[i][j].get_content() == void_value){
+         cout << "." << "\t";
+      }else{
+        cout << get_plateau()[i][j].get_content() << "\t";
+      }
+    }
+  }
+  cout << endl;
+}
