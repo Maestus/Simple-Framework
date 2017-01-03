@@ -83,11 +83,7 @@ void Board<T>::computer_play(){
     } else if(has_lose()) {
       cout << "~~~~~~~~~~~~~~~~ You Lose ! ~~~~~~~~~~~~~~~~~~~" << endl;
     }
-    cout << "Wish to continue ? [Y/N] : ";
-    cin >> input;
-    if(input != "Y"){
-      return;
-    }
+    usleep(200000);
   }
 }
 

@@ -31,11 +31,11 @@ void TwoThreeFiveTiles::merge_tiles(Direction d){
           }
           if(nextx >= 0 && get_plateau()[nextx][y].get_content() == get_plateau()[x][y].get_content()
             && !get_plateau()[nextx][y].is_access() && !get_plateau()[x][y].is_access()){
-            get_plateau()[x][y].set_content(get_plateau()[nextx][y].get_content()
-              *(((get_plateau()[nextx][y].get_content() % 3 == 0) ? valeur_initiale[1] : ((get_plateau()[nextx][y].get_content() % 5 == 0) ? valeur_initiale[2] : valeur_initiale[0]))));
+            get_plateau()[x][y]=get_plateau()[nextx][y].get_content()
+              *(((get_plateau()[nextx][y].get_content() % 3 == 0) ? valeur_initiale[1] : ((get_plateau()[nextx][y].get_content() % 5 == 0) ? valeur_initiale[2] : valeur_initiale[0])));
             add_to_score(get_plateau()[nextx][y].get_content());
             get_plateau()[x][y].set_access(true);
-            get_plateau()[nextx][y].set_content(0);
+            get_plateau()[nextx][y]=0;
           }
         }
       }

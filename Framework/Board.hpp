@@ -2,6 +2,7 @@
 #define __BOARD_HPP__
 
 #include <iostream>
+#include <unistd.h>
 #include <vector>
 #include "Box.hpp"
 #include "../Exceptions/NotwellformedBoard.hpp"

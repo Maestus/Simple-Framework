@@ -14,8 +14,8 @@ bool Module_2048::apply_move(Direction d){
             ++nextx;
           }
           if(lastx != x){
-            get_plateau()[lastx][y].set_content(get_plateau()[x][y].get_content());
-            get_plateau()[x][y].set_content(0);
+            get_plateau()[lastx][y]=get_plateau()[x][y].get_content();
+            get_plateau()[x][y]=0;
             has_moved = true;
           }
         }
@@ -32,8 +32,8 @@ bool Module_2048::apply_move(Direction d){
             --nextx;
           }
           if(lastx != x){
-            get_plateau()[lastx][y].set_content(get_plateau()[x][y].get_content());
-            get_plateau()[x][y].set_content(0);
+            get_plateau()[lastx][y]=get_plateau()[x][y].get_content();
+            get_plateau()[x][y]=0;
             has_moved = true;
           }
         }

@@ -46,15 +46,15 @@ void NegativeTiles::merge_tiles(Direction d){
           }
           if(nextx >= 0 && get_plateau()[nextx][y].get_content() == get_plateau()[x][y].get_content()
             && !get_plateau()[nextx][y].is_access() && !get_plateau()[x][y].is_access()){
-            get_plateau()[x][y].set_content(get_plateau()[nextx][y].get_content()*valeur_initiale);
+            get_plateau()[x][y]=get_plateau()[nextx][y].get_content()*valeur_initiale;
             add_to_score(get_plateau()[x][y].get_content());
             get_plateau()[x][y].set_access(true);
-            get_plateau()[nextx][y].set_content(0);
+            get_plateau()[nextx][y]=0;
           }else if(nextx >= 0 && get_plateau()[nextx][y].get_content() == -get_plateau()[x][y].get_content()
             && !get_plateau()[nextx][y].is_access() && !get_plateau()[x][y].is_access()){
-            get_plateau()[x][y].set_content(0);
+            get_plateau()[x][y]=0;
             get_plateau()[x][y].set_access(true);
-            get_plateau()[nextx][y].set_content(0);
+            get_plateau()[nextx][y]=0;
           }
         }
       }
@@ -77,9 +77,9 @@ void NegativeTiles::merge_tiles(Direction d){
             get_plateau()[x][y] = 0;
           }else if(nextx < get_matrix_length_x() && get_plateau()[nextx][y].get_content() == -get_plateau()[x][y].get_content()
             && !get_plateau()[nextx][y].is_access() && !get_plateau()[x][y].is_access()){
-            get_plateau()[x][y].set_content(0);
+            get_plateau()[x][y]=0;
             get_plateau()[x][y].set_access(true);
-            get_plateau()[nextx][y].set_content(0);
+            get_plateau()[nextx][y]=0;
           }
         }
       }

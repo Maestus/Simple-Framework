@@ -26,6 +26,8 @@ Module_2048* launch_2048_module(int& x, int& y){
   cout << "Faite votre choix : ";
   try{
     cin >> choix;
+    if(choix != 1 && choix != 2 && choix != 3 )
+      launch_2048_module(x,y);
   }catch(exception const& e){
     cout << e.what() << endl;
   }
