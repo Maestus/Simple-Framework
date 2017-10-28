@@ -1,3 +1,7 @@
+# Presentation
+
+![Image of 2048 Game] (Images/2048.png)
+
 # Build project
 ```
 make
