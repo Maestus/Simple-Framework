@@ -1,6 +1,12 @@
 # Presentation
 
-![Image of 2048 Game] (Images/2048.png)
+2018 Game :
+
+![2048 Game](Images/2048.png)
+
+Taquin Game :
+
+![2048 Game](Images/taquin.png)
 
 # Build project
 ```
@@ -9,7 +15,7 @@ make
 
 # How to use
 
-  For 2048 :
+For 2048 :
 ```
 ./launch 2048 size_x size_y [--graphic]
 ```
