@@ -37,8 +37,8 @@ Second step :
 Final step :
 
     -Implement 2048 and Taquin game with this framework.
-        -2048 Classic Mode (Done)
-        -2048 NegativeTiles Mode (Done)
-        -2048 TwoThreeFiveTiles Mode (Done)
-        -Taquin (Done)
-        -Sokoban (Done)
+        * 2048 Classic Mode (Done)
+        * 2048 NegativeTiles Mode (Done)
+        * 2048 TwoThreeFiveTiles Mode (Done)
+        * Taquin (Done)
+        * Sokoban (Done)
