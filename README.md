@@ -22,9 +22,9 @@ for simple boxes games.
 
 Exemple of implementable games :
 
-    * 2048
-    * Taquin
-    * Sokoban
+* 2048
+* Taquin
+* Sokoban
 
 First step :
 
@@ -34,11 +34,10 @@ Second step :
 
     -Implement it in source code. (Done)
 
-Final step :
+Final step, implement 2048 and Taquin game with this framework :
 
-    -Implement 2048 and Taquin game with this framework.
-        * 2048 Classic Mode (Done)
-        * 2048 NegativeTiles Mode (Done)
-        * 2048 TwoThreeFiveTiles Mode (Done)
-        * Taquin (Done)
-        * Sokoban (Done)
+* 2048 Classic Mode (Done)
+* 2048 NegativeTiles Mode (Done)
+* 2048 TwoThreeFiveTiles Mode (Done)
+* Taquin (Done)
+* Sokoban (Done)
