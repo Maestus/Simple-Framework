@@ -1,19 +1,23 @@
 Build project :
-
-    make
-
---
+```
+make
+```
+__
 
 How to use :
 
   For 2048 :
-    ./launch 2048 size_x size_y [--graphic]
-
-  For Taquin :
-    ./launch Taquin size_x size_y [--graphic]
-
-  For Sokoban :
-    ./launch Sokoban size_x size_y [--graphic]
+```
+./launch 2048 size_x size_y [--graphic]
+```
+For Taquin :
+```
+./launch Taquin size_x size_y [--graphic]
+```
+For Sokoban :
+```
+./launch Sokoban size_x size_y [--graphic]
+```
 
 <hz>
 
@@ -28,11 +32,11 @@ Exemple of implementable games :
 
 First step :
 
-    -Working on UML representation of the Framework. (Done)
+* Working on UML representation of the Framework. (Done)
 
 Second step :
 
-    -Implement it in source code. (Done)
+* Implement it in source code. (Done)
 
 Final step, implement 2048 and Taquin game with this framework :
 
