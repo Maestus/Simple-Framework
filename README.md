@@ -15,16 +15,16 @@ How to use :
   For Sokoban :
     ./launch Sokoban size_x size_y [--graphic]
 
---
+<hz>
 
 Building from scratch a new framework written in C++
 for simple boxes games.
 
 Exemple of implementable games :
 
-    -2048
-    -Taquin
-    -Sokoban
+    * 2048
+    * Taquin
+    * Sokoban
 
 First step :
 
